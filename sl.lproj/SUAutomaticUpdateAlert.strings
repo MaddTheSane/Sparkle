@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Namestitev in ponoven zagon"; ObjectID = "41"; */
+"41.title" = "Namestitev in ponoven zagon";
+
+/* Class = "NSButtonCell"; title = "Namestitev in izhod"; ObjectID = "42"; */
+"42.title" = "Namestitev in izhod";
+
+/* Class = "NSButtonCell"; title = "V prihodnje samodejno nameščaj posodobitve"; ObjectID = "43"; */
+"43.title" = "V prihodnje samodejno nameščaj posodobitve";
+
+/* Class = "NSButtonCell"; title = "Ne namesti"; ObjectID = "44"; */
+"44.title" = "Ne namesti";

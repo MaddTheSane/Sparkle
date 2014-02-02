@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Instalează și Redeschide"; ObjectID = "41"; */
+"41.title" = "Instalează și Redeschide";
+
+/* Class = "NSButtonCell"; title = "Instalează la Ieșire"; ObjectID = "42"; */
+"42.title" = "Instalează la Ieșire";
+
+/* Class = "NSButtonCell"; title = "În viitor descarcă și instalează automat actualizările"; ObjectID = "43"; */
+"43.title" = "În viitor descarcă și instalează automat actualizările";
+
+/* Class = "NSButtonCell"; title = "Nu instala"; ObjectID = "44"; */
+"44.title" = "Nu instala";

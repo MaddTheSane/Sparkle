@@ -1,24 +1,24 @@
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
-"Text Cell" = "Text Cell";
+"43.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
-"Text Cell" = "Text Cell";
+"45.title" = "Text Cell";
 
-/* Class = "NSButtonCell"; title = "Check Automatically"; ObjectID = "176"; */
-"Check Automatically" = "Søg automatisk";
+/* Class = "NSButtonCell"; title = "Søg automatisk"; ObjectID = "176"; */
+"176.title" = "Søg automatisk";
 
-/* Class = "NSButtonCell"; title = "Don't Check"; ObjectID = "177"; */
-"Don't Check" = "Søg ikke";
+/* Class = "NSButtonCell"; title = "Søg ikke"; ObjectID = "177"; */
+"177.title" = "Søg ikke";
 
-/* Class = "NSTextFieldCell"; title = "Check for updates automatically?"; ObjectID = "178"; */
-"Check for updates automatically?" = "Søg efter opdateringer automatisk?";
+/* Class = "NSTextFieldCell"; title = "Søg efter opdateringer automatisk?"; ObjectID = "178"; */
+"178.title" = "Søg efter opdateringer automatisk?";
 
 /* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
-"DO NOT LOCALIZE" = "DO NOT LOCALIZE";
+"179.title" = "DO NOT LOCALIZE";
 
-/* Class = "NSButtonCell"; title = "Include anonymous system profile"; ObjectID = "180"; */
-"Include anonymous system profile" = "Vedhæft anonym system profil";
+/* Class = "NSButtonCell"; title = "Vedhæft anonym systemprofil"; ObjectID = "180"; */
+"180.title" = "Vedhæft anonym systemprofil";
 
 /* Class = "NSTextFieldCell"; title = "Anonymous system profile information is used to help us plan future development work. Please contact us if you have any questions about this.\n\nThis is the information that would be sent:"; ObjectID = "183"; */
-"Anonymous system profile information is used to help us plan future development work. Please contact us if you have any questions about this.\n\nThis is the information that would be sent:" = "Anonym system profil bruges til forbedring og udvikling af softwaren. Kontakt os hvis du har spørgsmål omkring dette.\n\nDette er hvad der vil blive sendt:";
+"183.title" = "Anonymous system profile information is used to help us plan future development work. Please contact us if you have any questions about this.\n\nThis is the information that would be sent:";

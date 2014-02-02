@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "تثبيت وإعادة تشغيل التطبيق"; ObjectID = "41"; */
+"41.title" = "تثبيت وإعادة تشغيل التطبيق";
+
+/* Class = "NSButtonCell"; title = "تثبيت عند إنهاء التطبيق"; ObjectID = "42"; */
+"42.title" = "تثبيت عند إنهاء التطبيق";
+
+/* Class = "NSButtonCell"; title = "تنزيل التحديثات وتثبيتها تلقائيًا في المستقبل"; ObjectID = "43"; */
+"43.title" = "تنزيل التحديثات وتثبيتها تلقائيًا في المستقبل";
+
+/* Class = "NSButtonCell"; title = "عدم التثبيت"; ObjectID = "44"; */
+"44.title" = "عدم التثبيت";

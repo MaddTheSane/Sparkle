@@ -1,18 +1,18 @@
-/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:92) */
-"Automatically download and install updates in the future" = "Automatically download and install updates in the future";
 
-/* NSButton (Install Update) : <title:Install Update> (oid:76) */
-"Install Update" = "Install Update";
+/* Class = "NSWindow"; title = "อัพเดทซอฟต์แวร์"; ObjectID = "5"; */
+"5.title" = "อัพเดทซอฟต์แวร์";
 
-/* NSTextField (Release Notes:) : <title:Release Notes:> (oid:17) */
-"Release Notes:" = "Release Notes:";
+/* Class = "NSTextFieldCell"; title = "Release Notes:"; ObjectID = "170"; */
+"170.title" = "Release Notes:";
 
-/* NSButton (Remind Me Later) : <title:Remind Me Later> (oid:22) */
-"Remind Me Later" = "Remind Me Later";
+/* Class = "NSButtonCell"; title = "เตือนในภายหลัง"; ObjectID = "171"; */
+"171.title" = "เตือนในภายหลัง";
 
-/* NSButton (Skip This Version) : <title:Skip This Version> (oid:23) */
-"Skip This Version" = "Skip This Version";
+/* Class = "NSButtonCell"; title = "ข้ามเวอร์ชั่นนี้"; ObjectID = "172"; */
+"172.title" = "ข้ามเวอร์ชั่นนี้";
 
-/* NSWindow (Software Update) : <title:Software Update> (oid:5) */
-"Software Update" = "Software Update";
+/* Class = "NSButtonCell"; title = "ติดตั้งอัพเดท"; ObjectID = "173"; */
+"173.title" = "ติดตั้งอัพเดท";
 
+/* Class = "NSButtonCell"; title = "ดาวน์โหลดและติดตั้งอัพเดทโดยอัตโนมัติในอนาคต"; ObjectID = "175"; */
+"175.title" = "ดาวน์โหลดและติดตั้งอัพเดทโดยอัตโนมัติในอนาคต";

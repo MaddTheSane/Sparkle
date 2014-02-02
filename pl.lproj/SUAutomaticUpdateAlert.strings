@@ -1,12 +1,12 @@
-/* NSWindow () : <title:> (oid:5) */
-"" = "";
 
-/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:17) */
-"Automatically download and install updates in the future" = "W przyszłości automatycznie pobieraj i instaluj uaktualnienia";
+/* Class = "NSButtonCell"; title = "Instaluj i uruchom ponownie"; ObjectID = "41"; */
+"41.title" = "Instaluj i uruchom ponownie";
 
-/* NSButton (Relaunch Later) : <title:Relaunch Later> (oid:16) */
-"Relaunch Later" = "Uruchom ponownie później";
+/* Class = "NSButtonCell"; title = "Instaluj przy zamknięciu"; ObjectID = "42"; */
+"42.title" = "Instaluj przy zamknięciu";
 
-/* NSButton (Relaunch Now) : <title:Relaunch Now> (oid:15) */
-"Relaunch Now" = "Uruchom ponownie";
+/* Class = "NSButtonCell"; title = "Automatycznie pobierz i zainstaluj przyszłe uaktualnienia"; ObjectID = "43"; */
+"43.title" = "Automatycznie pobierz i zainstaluj przyszłe uaktualnienia";
 
+/* Class = "NSButtonCell"; title = "Nie instaluj"; ObjectID = "44"; */
+"44.title" = "Nie instaluj";

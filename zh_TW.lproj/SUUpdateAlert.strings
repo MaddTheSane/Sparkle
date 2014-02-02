@@ -1,18 +1,18 @@
-/* NSButton (Automatically download and install updates in the future) : <title:Automatically download and install updates in the future> (oid:92) */
-"Automatically download and install updates in the future" = "未來都自動下載並安裝更新";
 
-/* NSButton (Install Update) : <title:Install Update> (oid:76) */
-"Install Update" = "安裝更新";
+/* Class = "NSWindow"; title = "軟體更新"; ObjectID = "5"; */
+"5.title" = "軟體更新";
 
-/* NSTextField (Release Notes:) : <title:Release Notes:> (oid:17) */
-"Release Notes:" = "發行通告：";
+/* Class = "NSTextFieldCell"; title = "更新事項："; ObjectID = "170"; */
+"170.title" = "更新事項：";
 
-/* NSButton (Remind Me Later) : <title:Remind Me Later> (oid:22) */
-"Remind Me Later" = "稍後再提醒我";
+/* Class = "NSButtonCell"; title = "暫緩提醒"; ObjectID = "171"; */
+"171.title" = "暫緩提醒";
 
-/* NSButton (Skip This Version) : <title:Skip This Version> (oid:23) */
-"Skip This Version" = "略過這個版本";
+/* Class = "NSButtonCell"; title = "跳過此版本"; ObjectID = "172"; */
+"172.title" = "跳過此版本";
 
-/* NSWindow (Software Update) : <title:Software Update> (oid:5) */
-"Software Update" = "軟體更新";
+/* Class = "NSButtonCell"; title = "安裝更新項目"; ObjectID = "173"; */
+"173.title" = "安裝更新項目";
 
+/* Class = "NSButtonCell"; title = "自動下載並安裝未來的更新項目"; ObjectID = "175"; */
+"175.title" = "自動下載並安裝未來的更新項目";

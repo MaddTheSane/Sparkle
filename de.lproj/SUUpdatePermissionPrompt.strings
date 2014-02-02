@@ -1,24 +1,24 @@
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
-"Text Cell" = "Text Cell";
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
-"Text Cell" = "Text Cell";
+"45.title" = "Text Cell";
 
-/* Class = "NSButtonCell"; title = "Check Automatically"; ObjectID = "176"; */
-"Check Automatically" = "Automatisch suchen";
+/* Class = "NSButtonCell"; title = "Automatisch suchen"; ObjectID = "176"; */
+"176.title" = "Automatisch suchen";
 
-/* Class = "NSButtonCell"; title = "Don't Check"; ObjectID = "177"; */
-"Don't Check" = "Nicht suchen";
+/* Class = "NSButtonCell"; title = "Nicht suchen"; ObjectID = "177"; */
+"177.title" = "Nicht suchen";
 
-/* Class = "NSTextFieldCell"; title = "Check for updates automatically?"; ObjectID = "178"; */
-"Check for updates automatically?" = "Automatisch nach Aktualisierungen suchen?";
+/* Class = "NSTextFieldCell"; title = "Automatisch nach Aktualisierungen suchen?"; ObjectID = "178"; */
+"178.title" = "Automatisch nach Aktualisierungen suchen?";
 
 /* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
-"DO NOT LOCALIZE" = "DO NOT LOCALIZE";
+"179.title" = "DO NOT LOCALIZE";
 
-/* Class = "NSButtonCell"; title = "Include anonymous system profile"; ObjectID = "180"; */
-"Include anonymous system profile" = "Anonymisiertes Systemprofil übertragen";
+/* Class = "NSButtonCell"; title = "Anonymisiertes Systemprofil übertragen"; ObjectID = "180"; */
+"180.title" = "Anonymisiertes Systemprofil übertragen";
 
-/* Class = "NSTextFieldCell"; title = "Anonymous system profile information is used to help us plan future development work. Please contact us if you have any questions about this.\n\nThis is the information that would be sent:"; ObjectID = "183"; */
-"Anonymous system profile information is used to help us plan future development work. Please contact us if you have any questions about this.\n\nThis is the information that would be sent:" = "Das anonymisierte Systemprofil unterstützt uns bei der zukünftigen Entwicklung. Bitte kontaktieren Sie uns, wenn Sie Fragen hierzu haben.\n\nDiese Informationen würden an uns gesendet:";
+/* Class = "NSTextFieldCell"; title = "Das anonymisierte Systemprofil unterstützt uns bei der zukünftigen Entwicklung. Bitte kontaktieren Sie uns, wenn Sie Fragen hierzu haben.\n\nDiese Informationen würden an uns gesendet:"; ObjectID = "183"; */
+"183.title" = "Das anonymisierte Systemprofil unterstützt uns bei der zukünftigen Entwicklung. Bitte kontaktieren Sie uns, wenn Sie Fragen hierzu haben.\n\nDiese Informationen würden an uns gesendet:";

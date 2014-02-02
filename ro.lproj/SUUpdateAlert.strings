@@ -1,0 +1,18 @@
+
+/* Class = "NSWindow"; title = "Actualizare Software"; ObjectID = "5"; */
+"5.title" = "Actualizare Software";
+
+/* Class = "NSTextFieldCell"; title = "Note de editie:"; ObjectID = "170"; */
+"170.title" = "Note de editie:";
+
+/* Class = "NSButtonCell"; title = "Amintește-mi mai târziu"; ObjectID = "171"; */
+"171.title" = "Amintește-mi mai târziu";
+
+/* Class = "NSButtonCell"; title = "Sari peste..."; ObjectID = "172"; */
+"172.title" = "Sari peste...";
+
+/* Class = "NSButtonCell"; title = "Instalează actualizarea"; ObjectID = "173"; */
+"173.title" = "Instalează actualizarea";
+
+/* Class = "NSButtonCell"; title = "În viitor descarcă și instalează automat actualizările"; ObjectID = "175"; */
+"175.title" = "În viitor descarcă și instalează automat actualizările";

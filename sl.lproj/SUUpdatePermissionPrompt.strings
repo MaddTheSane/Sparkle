@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Samodejno preverjaj"; ObjectID = "176"; */
+"176.title" = "Samodejno preverjaj";
+
+/* Class = "NSButtonCell"; title = "Ne preverjaj"; ObjectID = "177"; */
+"177.title" = "Ne preverjaj";
+
+/* Class = "NSTextFieldCell"; title = "Naj občasno preverjam, če so na voljo posodobitve?"; ObjectID = "178"; */
+"178.title" = "Naj občasno preverjam, če so na voljo posodobitve?";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Vključi anonimni profil sistema"; ObjectID = "180"; */
+"180.title" = "Vključi anonimni profil sistema";
+
+/* Class = "NSTextFieldCell"; title = "Anonimni profil sistema se uporablja za načrtovanje nadaljnega razvoja programa. V primeru vprašanj nas lahko kontaktirate.\n\nPošljejo se sledeče informacije:"; ObjectID = "183"; */
+"183.title" = "Anonimni profil sistema se uporablja za načrtovanje nadaljnega razvoja programa. V primeru vprašanj nas lahko kontaktirate.\n\nPošljejo se sledeče informacije:";

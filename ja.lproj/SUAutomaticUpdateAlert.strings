@@ -1,12 +1,12 @@
 
-/* Class = "NSButtonCell"; title = "Install and Relaunch"; ObjectID = "41"; */
-"Install and Relaunch" = "インストールして再起動";
+/* Class = "NSButtonCell"; title = "インストールして再起動"; ObjectID = "41"; */
+"41.title" = "インストールして再起動";
 
-/* Class = "NSButtonCell"; title = "Install on Quit"; ObjectID = "42"; */
-"Install on Quit" = "終了してインストール";
+/* Class = "NSButtonCell"; title = "終了してインストール"; ObjectID = "42"; */
+"42.title" = "終了してインストール";
 
-/* Class = "NSButtonCell"; title = "Automatically download and install updates in the future"; ObjectID = "43"; */
-"Automatically download and install updates in the future" = "今後はアップデートのダウンロードとインストールを自動で行う";
+/* Class = "NSButtonCell"; title = "今後はアップデートのダウンロードとインストールを自動で行う"; ObjectID = "43"; */
+"43.title" = "今後はアップデートのダウンロードとインストールを自動で行う";
 
-/* Class = "NSButtonCell"; title = "Don't Install"; ObjectID = "44"; */
-"Don't Install" = "インストールしない";
+/* Class = "NSButtonCell"; title = "インストールしない"; ObjectID = "44"; */
+"44.title" = "インストールしない";

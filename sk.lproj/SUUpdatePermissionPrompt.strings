@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Kontrolovať automaticky"; ObjectID = "176"; */
+"176.title" = "Kontrolovať automaticky";
+
+/* Class = "NSButtonCell"; title = "Nekontrolovať"; ObjectID = "177"; */
+"177.title" = "Nekontrolovať";
+
+/* Class = "NSTextFieldCell"; title = "Kontrolovať aktualizácie automaticky?"; ObjectID = "178"; */
+"178.title" = "Kontrolovať aktualizácie automaticky?";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Zahrnúť anonymný profil systému"; ObjectID = "180"; */
+"180.title" = "Zahrnúť anonymný profil systému";
+
+/* Class = "NSTextFieldCell"; title = "Anonymný profil systému nám umožní zlepšiť plánovanie budúceho vývoja aplikácie. Ak máte ohľadom tohto akékoľvek otázky, neváhajte a kontaktujte nás.\n\nOdosielané budú nasledujúce informácie:"; ObjectID = "183"; */
+"183.title" = "Anonymný profil systému nám umožní zlepšiť plánovanie budúceho vývoja aplikácie. Ak máte ohľadom tohto akékoľvek otázky, neváhajte a kontaktujte nás.\n\nOdosielané budú nasledujúce informácie:";

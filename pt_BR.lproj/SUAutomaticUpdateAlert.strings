@@ -1,12 +1,12 @@
 
-/* Class = "NSButtonCell"; title = "Install and Relaunch"; ObjectID = "41"; */
-"Install and Relaunch" = "Instalar e Reiniciar";
+/* Class = "NSButtonCell"; title = "Instalar e Reabrir"; ObjectID = "41"; */
+"41.title" = "Instalar e Reabrir";
 
-/* Class = "NSButtonCell"; title = "Install on Quit"; ObjectID = "42"; */
-"Install on Quit" = "Instalar ao Encerrar";
+/* Class = "NSButtonCell"; title = "Instalar ao Encerrar"; ObjectID = "42"; */
+"42.title" = "Instalar ao Encerrar";
 
-/* Class = "NSButtonCell"; title = "Automatically download and install updates in the future"; ObjectID = "43"; */
-"Automatically download and install updates in the future" = "Sempre baixar e instalar atualizações automaticamente";
+/* Class = "NSButtonCell"; title = "Sempre baixar e instalar atualizações automaticamente"; ObjectID = "43"; */
+"43.title" = "Sempre baixar e instalar atualizações automaticamente";
 
-/* Class = "NSButtonCell"; title = "Don't Install"; ObjectID = "44"; */
-"Don't Install" = "Não Instalar";
+/* Class = "NSButtonCell"; title = "Não Instalar"; ObjectID = "44"; */
+"44.title" = "Não Instalar";
