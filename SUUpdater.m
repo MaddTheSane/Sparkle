@@ -45,7 +45,7 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
 @end
 
 @implementation SUUpdater
-
+@synthesize delegate;
 #pragma mark Initialization
 
 static NSMutableDictionary *sharedUpdaters = nil;

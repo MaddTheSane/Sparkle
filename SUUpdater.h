@@ -22,17 +22,14 @@
 
 	NSString *customUserAgentString;
 	SUHost *host;
-	IBOutlet id delegate;
+	//IBOutlet __weak id delegate;
 }
-
+@property (weak) IBOutlet id delegate;
 + (SUUpdater *)sharedUpdater;
 + (SUUpdater *)updaterForBundle:(NSBundle *)bundle;
 - (id)initForBundle:(NSBundle *)bundle;
 
 - (NSBundle *)hostBundle;
-
-- (void)setDelegate:(id)delegate;
-- (id)delegate;
 
 - (void)setAutomaticallyChecksForUpdates:(BOOL)automaticallyChecks;
 - (BOOL)automaticallyChecksForUpdates;
