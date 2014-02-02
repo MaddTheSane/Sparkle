@@ -1,18 +1,18 @@
 
 /* Class = "NSWindow"; title = "Software Update"; ObjectID = "5"; */
-"Software Update" = "Software Update";
+"5.title" = "Software Update";
 
 /* Class = "NSTextFieldCell"; title = "Release Notes:"; ObjectID = "170"; */
-"Release Notes:" = "Release Notes:";
+"170.title" = "Release Notes:";
 
 /* Class = "NSButtonCell"; title = "Remind Me Later"; ObjectID = "171"; */
-"Remind Me Later" = "Remind Me Later";
+"171.title" = "Remind Me Later";
 
 /* Class = "NSButtonCell"; title = "Skip This Version"; ObjectID = "172"; */
-"Skip This Version" = "Skip This Version";
+"172.title" = "Skip This Version";
 
 /* Class = "NSButtonCell"; title = "Install Update"; ObjectID = "173"; */
-"Install Update" = "Install Update";
+"173.title" = "Install Update";
 
 /* Class = "NSButtonCell"; title = "Automatically download and install updates in the future"; ObjectID = "175"; */
-"Automatically download and install updates in the future" = "Automatically download and install updates in the future";
+"175.title" = "Automatically download and install updates in the future";

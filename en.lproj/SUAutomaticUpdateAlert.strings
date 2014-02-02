@@ -1,12 +1,12 @@
 
 /* Class = "NSButtonCell"; title = "Install and Relaunch"; ObjectID = "41"; */
-"Install and Relaunch" = "Install and Relaunch";
+"41.title" = "Install and Relaunch";
 
 /* Class = "NSButtonCell"; title = "Install on Quit"; ObjectID = "42"; */
-"Install on Quit" = "Install on Quit";
+"42.title" = "Install on Quit";
 
 /* Class = "NSButtonCell"; title = "Automatically download and install updates in the future"; ObjectID = "43"; */
-"Automatically download and install updates in the future" = "Automatically download and install updates in the future";
+"43.title" = "Automatically download and install updates in the future";
 
 /* Class = "NSButtonCell"; title = "Don't Install"; ObjectID = "44"; */
-"Don't Install" = "Don’t Install";
+"44.title" = "Don't Install";
