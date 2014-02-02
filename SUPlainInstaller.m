@@ -33,29 +33,29 @@ static NSString * const SUInstallerInstallationPathKey = @"SUInstallerInstallati
 {
 	// *** GETS CALLED ON NON-MAIN THREAD!
 	
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
-	NSError *error = nil;
-	
-	NSString	*	oldPath = [[info objectForKey:SUInstallerHostKey] bundlePath];
-	NSString	*	installationPath = [info objectForKey:SUInstallerInstallationPathKey];
-	BOOL result = [self copyPathWithAuthentication:[info objectForKey:SUInstallerPathKey] overPath: installationPath temporaryName:[info objectForKey:SUInstallerTempNameKey] error:&error];
-	
-	if( result )
-	{
-		BOOL	haveOld = [[NSFileManager defaultManager] fileExistsAtPath: oldPath];
-		BOOL	differentFromNew = ![oldPath isEqualToString: installationPath];
-		if( haveOld && differentFromNew )
-			[self _movePathToTrash: oldPath];	// On success, trash old copy if there's still one due to renaming.
-	}
-	NSMutableDictionary *mutableInfo = [[info mutableCopy] autorelease];
-	[mutableInfo setObject:[NSNumber numberWithBool:result] forKey:SUInstallerResultKey];
+		NSError *error = nil;
+		
+		NSString	*	oldPath = [[info objectForKey:SUInstallerHostKey] bundlePath];
+		NSString	*	installationPath = [info objectForKey:SUInstallerInstallationPathKey];
+		BOOL result = [self copyPathWithAuthentication:[info objectForKey:SUInstallerPathKey] overPath: installationPath temporaryName:[info objectForKey:SUInstallerTempNameKey] error:&error];
+		
+		if( result )
+		{
+			BOOL	haveOld = [[NSFileManager defaultManager] fileExistsAtPath: oldPath];
+			BOOL	differentFromNew = ![oldPath isEqualToString: installationPath];
+			if( haveOld && differentFromNew )
+				[self _movePathToTrash: oldPath];	// On success, trash old copy if there's still one due to renaming.
+		}
+		NSMutableDictionary *mutableInfo = [info mutableCopy];
+		[mutableInfo setObject:[NSNumber numberWithBool:result] forKey:SUInstallerResultKey];
     [mutableInfo setObject:installationPath forKey:SUInstallerInstallationPathKey];
-	if (!result && error)
-		[mutableInfo setObject:error forKey:SUInstallerErrorKey];
-	[self performSelectorOnMainThread:@selector(finishInstallationWithInfo:) withObject:mutableInfo waitUntilDone:NO];
+		if (!result && error)
+			[mutableInfo setObject:error forKey:SUInstallerErrorKey];
+		[self performSelectorOnMainThread:@selector(finishInstallationWithInfo:) withObject:mutableInfo waitUntilDone:NO];
     
-	[pool drain];
+	}
 }
 
 + (void)performInstallationToPath:(NSString *)installationPath fromPath:(NSString *)path host:(SUHost *)host delegate:delegate synchronously:(BOOL)synchronously versionComparator:(id <SUVersionComparison>)comparator

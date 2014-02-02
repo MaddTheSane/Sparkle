@@ -7,7 +7,7 @@
 //
 
 #import "SUPasswordPrompt.h"
-
+#import "SUHost.h"
 
 @implementation SUPasswordPrompt
 
@@ -31,8 +31,7 @@
 
 - (void)setName:(NSString*)name
 {
-	[mName release];
-	mName = [name retain];
+	mName = name;
 }
 
 - (NSString*)name
@@ -42,8 +41,7 @@
 
 - (void)setIcon:(NSImage*)icon
 {
-	[mIcon release];
-	mIcon = [icon retain];
+	mIcon = icon;
 }
 
 - (NSImage*)icon
@@ -58,8 +56,7 @@
 
 - (void)setPassword:(NSString*)password
 {
-	[mPassword release];
-	mPassword = [password retain];
+	mPassword = password;
 }
 
 - (NSInteger)run

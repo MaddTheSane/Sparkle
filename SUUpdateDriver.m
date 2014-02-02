@@ -27,7 +27,7 @@ NSString * const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 - (void)checkForUpdatesAtURL:(NSURL *)URL host:(SUHost *)h
 {
 	appcastURL = [URL copy];
-	host = [h retain];
+	host = h;
 }
 
 - (void)abortUpdate
@@ -39,12 +39,5 @@ NSString * const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 - (BOOL)isInterruptible { return isInterruptible; }
 
 - (BOOL)finished { return finished; }
-
-- (void)dealloc
-{
-    self.host = nil;
-	[appcastURL release];
-    [super dealloc];
-}
 
 @end

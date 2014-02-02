@@ -17,9 +17,9 @@
 {
 	static NSDictionary *typeSelectorDictionary;
 	if (!typeSelectorDictionary)
-		typeSelectorDictionary = [[NSDictionary dictionaryWithObjectsAndKeys:@"extractZIP", @".zip", @"extractTAR", @".tar",
+		typeSelectorDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"extractZIP", @".zip", @"extractTAR", @".tar",
 								   @"extractTGZ", @".tar.gz", @"extractTGZ", @".tgz",
-								   @"extractTBZ", @".tar.bz2", @"extractTBZ", @".tbz", nil] retain];
+								   @"extractTBZ", @".tar.bz2", @"extractTBZ", @".tbz", nil];
 
 	NSString *lastPathComponent = [path lastPathComponent];
 	NSEnumerator *typeEnumerator = [typeSelectorDictionary keyEnumerator];
@@ -49,59 +49,59 @@
 	// *** GETS CALLED ON NON-MAIN THREAD!!!
 	
 
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	FILE *fp = NULL, *cmdFP = NULL;
+	@autoreleasepool {
+		FILE *fp = NULL, *cmdFP = NULL;
     char *oldDestinationString = NULL;
-	
-	SULog(@"Extracting %@ using '%@'",archivePath,command);
+		
+		SULog(@"Extracting %@ using '%@'",archivePath,command);
     
-	// Get the file size.
-	NSNumber *fs = [[[NSFileManager defaultManager] attributesOfItemAtPath:archivePath error:nil] objectForKey:NSFileSize];
-	if (fs == nil) goto reportError;
-	
-	// Thank you, Allan Odgaard!
-	// (who wrote the following extraction alg.)
-	fp = fopen([archivePath fileSystemRepresentation], "r");
-	if (!fp) goto reportError;
-	
+		// Get the file size.
+		NSNumber *fs = [[[NSFileManager defaultManager] attributesOfItemAtPath:archivePath error:nil] objectForKey:NSFileSize];
+		if (fs == nil) goto reportError;
+		
+		// Thank you, Allan Odgaard!
+		// (who wrote the following extraction alg.)
+		fp = fopen([archivePath fileSystemRepresentation], "r");
+		if (!fp) goto reportError;
+		
     oldDestinationString = getenv("DESTINATION");
-	setenv("DESTINATION", [[archivePath stringByDeletingLastPathComponent] fileSystemRepresentation], 1);
-	cmdFP = popen([command fileSystemRepresentation], "w");
-	size_t written;
-	if (!cmdFP) goto reportError;
-	
-	char buf[32*1024];
-	size_t len;
-	while((len = fread(buf, 1, 32*1024, fp)))
-	{				
-		written = fwrite(buf, 1, len, cmdFP);
-		if( written < len )
-		{
-			pclose(cmdFP);
-			goto reportError;
+		setenv("DESTINATION", [[archivePath stringByDeletingLastPathComponent] fileSystemRepresentation], 1);
+		cmdFP = popen([command fileSystemRepresentation], "w");
+		size_t written;
+		if (!cmdFP) goto reportError;
+		
+		char buf[32*1024];
+		size_t len;
+		while((len = fread(buf, 1, 32*1024, fp)))
+		{				
+			written = fwrite(buf, 1, len, cmdFP);
+			if( written < len )
+			{
+				pclose(cmdFP);
+				goto reportError;
+			}
+				
+			[self performSelectorOnMainThread:@selector(notifyDelegateOfExtractedLength:) withObject:[NSNumber numberWithUnsignedLong:len] waitUntilDone:NO];
 		}
-			
-		[self performSelectorOnMainThread:@selector(notifyDelegateOfExtractedLength:) withObject:[NSNumber numberWithUnsignedLong:len] waitUntilDone:NO];
-	}
-	pclose(cmdFP);
-	
-	if( ferror( fp ) )
-		goto reportError;
-	
-	[self performSelectorOnMainThread:@selector(notifyDelegateOfSuccess) withObject:nil waitUntilDone:NO];
-	goto finally;
-	
+		pclose(cmdFP);
+		
+		if( ferror( fp ) )
+			goto reportError;
+		
+		[self performSelectorOnMainThread:@selector(notifyDelegateOfSuccess) withObject:nil waitUntilDone:NO];
+		goto finally;
+		
 reportError:
-	[self performSelectorOnMainThread:@selector(notifyDelegateOfFailure) withObject:nil waitUntilDone:NO];
-	
+		[self performSelectorOnMainThread:@selector(notifyDelegateOfFailure) withObject:nil waitUntilDone:NO];
+		
 finally:
-	if (fp)
-		fclose(fp);
+		if (fp)
+			fclose(fp);
     if (oldDestinationString)
         setenv("DESTINATION", oldDestinationString, 1);
     else
         unsetenv("DESTINATION");
-	[pool release];
+	}
 }
 
 - (void)extractTAR

@@ -30,6 +30,8 @@ extern OSStatus SecStaticCodeCheckValidityWithErrors(SecStaticCodeRef staticCode
     SecRequirementRef requirement = NULL;
     SecStaticCodeRef staticCode = NULL;
     SecCodeRef hostCode = NULL;
+	CFErrorRef cfError = NULL;
+	NSBundle *newBundle;
     
     result = SecCodeCopySelf(kSecCSDefaultFlags, &hostCode);
     if (result != 0) {
@@ -43,21 +45,22 @@ extern OSStatus SecStaticCodeCheckValidityWithErrors(SecStaticCodeRef staticCode
         goto finally;
     }
     
-    NSBundle *newBundle = [NSBundle bundleWithPath:destinationPath];
+    newBundle = [NSBundle bundleWithPath:destinationPath];
     if (!newBundle) {
         SULog(@"Failed to load NSBundle for update");
         result = -1;
         goto finally;
     }
     
-    result = SecStaticCodeCreateWithPath((CFURLRef)[newBundle executableURL], kSecCSDefaultFlags, &staticCode);
+    result = SecStaticCodeCreateWithPath((__bridge CFURLRef)[newBundle executableURL], kSecCSDefaultFlags, &staticCode);
     if (result != 0) {
         SULog(@"Failed to get static code %d", result);
         goto finally;
     }
     
-    result = SecStaticCodeCheckValidityWithErrors(staticCode, kSecCSDefaultFlags | kSecCSCheckAllArchitectures, requirement, (CFErrorRef *)error);
-    if (result != 0 && error) [*error autorelease];
+    result = SecStaticCodeCheckValidityWithErrors(staticCode, kSecCSDefaultFlags | kSecCSCheckAllArchitectures, requirement, &cfError);
+	*error = CFBridgingRelease(cfError);
+    //if (result != 0 && error) [*error autorelease];
     
 finally:
     if (hostCode) CFRelease(hostCode);

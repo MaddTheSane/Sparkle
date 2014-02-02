@@ -39,20 +39,6 @@
 
 @implementation SUAppcast
 
-- (void)dealloc
-{
-	[items release];
-	items = nil;
-	[userAgentString release];
-	userAgentString = nil;
-	[downloadFilename release];
-	downloadFilename = nil;
-	[download release];
-	download = nil;
-	
-	[super dealloc];
-}
-
 - (NSArray *)items
 {
 	return items;
@@ -79,7 +65,6 @@
 
 - (void)download:(NSURLDownload *)aDownload didCreateDestination:(NSString *)path
 {
-    [downloadFilename release];
     downloadFilename = [path copy];
 }
 
@@ -102,10 +87,9 @@
             // In 10.7 and later, there's a real option for the behavior we desire.
             options = NSXMLNodeLoadExternalEntitiesSameOriginOnly;
         }
-		document = [[[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:downloadFilename] options:options error:&error] autorelease];
+		document = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:downloadFilename] options:options error:&error];
 	
 		[[NSFileManager defaultManager] removeItemAtPath:downloadFilename error:nil];
-		[downloadFilename release];
 		downloadFilename = nil;
 	}
 	else
@@ -198,7 +182,7 @@
             }
             
 			NSString *errString;
-			SUAppcastItem *anItem = [[[SUAppcastItem alloc] initWithDictionary:dict failureReason:&errString] autorelease];
+			SUAppcastItem *anItem = [[SUAppcastItem alloc] initWithDictionary:dict failureReason:&errString];
             if (anItem)
             {
                 [appcastItems addObject:anItem];
@@ -214,7 +198,7 @@
 	
 	if ([appcastItems count])
     {
-		NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO] autorelease];
+		NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 		[appcastItems sortUsingDescriptors:[NSArray arrayWithObject:sort]];
 		items = [appcastItems copy];
 	}
@@ -235,7 +219,6 @@
 	{
 		[[NSFileManager defaultManager] removeItemAtPath:downloadFilename error:nil];
 	}
-    [downloadFilename release];
     downloadFilename = nil;
     
 	[self reportError:error];
@@ -283,7 +266,6 @@
 {
 	if (uas != userAgentString)
 	{
-		[userAgentString release];
 		userAgentString = [uas copy];
 	}
 }

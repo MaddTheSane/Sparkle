@@ -26,8 +26,7 @@
 - (void)setTask:(NSTask *)theTask
 {
     if (mv_task != theTask) {
-        [mv_task release];
-        mv_task = [theTask retain];
+        mv_task = theTask;
     }
 }
 
@@ -42,8 +41,7 @@
 - (void)setOutputPipe:(NSPipe *)theOutputPipe
 {
     if (mv_outputPipe != theOutputPipe) {
-        [mv_outputPipe release];
-        mv_outputPipe = [theOutputPipe retain];
+        mv_outputPipe = theOutputPipe;
     }
 }
 
@@ -58,8 +56,7 @@
 - (void)setInputPipe:(NSPipe *)theInputPipe
 {
     if (mv_inputPipe != theInputPipe) {
-        [mv_inputPipe release];
-        mv_inputPipe = [theInputPipe retain];
+        mv_inputPipe = theInputPipe;
     }
 }
 
@@ -74,8 +71,7 @@
 - (void)setOutput:(NSData *)theOutput
 {
     if (mv_output != theOutput) {
-        [mv_output release];
-        mv_output = [theOutput retain];
+        mv_output = theOutput;
     }
 }
 
@@ -122,9 +118,9 @@
     self = [super init];
 	if (self)
 	{
-		[self setTask:[[[NSTask alloc] init] autorelease]];
-		[self setOutputPipe:[[[NSPipe alloc] init] autorelease]];
-		[self setInputPipe:[[[NSPipe alloc] init] autorelease]];
+		[self setTask:[[NSTask alloc] init]];
+		[self setOutputPipe:[[NSPipe alloc] init]];
+		[self setInputPipe:[[NSPipe alloc] init]];
 		
 		[[self task] setStandardInput:[self inputPipe]];
 		[[self task] setStandardOutput:[self outputPipe]];
@@ -141,12 +137,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    [mv_task release];
-    [mv_outputPipe release];
-    [mv_inputPipe release];
-	[mv_output release];
 
-    [super dealloc];
 }
 
 - (void)run:(NSString*)toolPath directory:(NSString*)currentDirectory withArgs:(NSArray*)args input:(NSData*)input
@@ -207,7 +198,7 @@
 + (NSData*)task:(NSString*)toolPath directory:(NSString*)currentDirectory withArgs:(NSArray*)args input:(NSData*)input
 {
 	// we need this wacky pool here, otherwise we run out of pipes, the pipes are internally autoreleased
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	NSData* result=nil;
 	
 	@try
@@ -217,25 +208,21 @@
 		[task run:toolPath directory:currentDirectory withArgs:args input:input];
 		
 		if ([task result] == 0)
-			result = [[task output] retain];
+			result = [task output];
 				
-		[task release];
 	}	
 	@catch (NSException *localException) { }
 	
-	[pool drain];
-	
-	// retained above
-	[result autorelease];
 	
     return result;
+	}
 }
 
 
 +(int)	task:(NSString*)toolPath directory:(NSString*)currentDirectory withArgs:(NSArray*)args input:(NSData*)input output: (NSData**)outData
 {
 	// we need this wacky pool here, otherwise we run out of pipes, the pipes are internally autoreleased
-	NSAutoreleasePool *	pool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	int					taskResult = 0;
 	if( outData )
 		*outData = nil;
@@ -248,21 +235,15 @@
 		
 		taskResult = [task result];
 		if( outData )
-			*outData = [[task output] retain];
+			*outData = [task output];
 				
-		[task release];
 	}	
 	NS_HANDLER;
 		taskResult = errCppGeneral;
 	NS_ENDHANDLER;
-	
-	[pool drain];
-	
-	// retained above
-	if( outData )
-		[*outData autorelease];
-	
+		
     return taskResult;
+	}
 }
 
 @end

@@ -22,17 +22,17 @@
 
 - (void)applyBinaryDelta
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSString *sourcePath = [[updateHost bundle] bundlePath];
-	NSString *targetPath = [[archivePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[sourcePath lastPathComponent]];
+	@autoreleasepool {
+		NSString *sourcePath = [[updateHost bundle] bundlePath];
+		NSString *targetPath = [[archivePath stringByDeletingLastPathComponent] stringByAppendingPathComponent:[sourcePath lastPathComponent]];
 
-	int result = applyBinaryDelta(sourcePath, targetPath, archivePath);
-	if (!result)
-		[self performSelectorOnMainThread:@selector(notifyDelegateOfSuccess) withObject:nil waitUntilDone:NO];
-	else
-		[self performSelectorOnMainThread:@selector(notifyDelegateOfFailure) withObject:nil waitUntilDone:NO];
+		int result = applyBinaryDelta(sourcePath, targetPath, archivePath);
+		if (!result)
+			[self performSelectorOnMainThread:@selector(notifyDelegateOfSuccess) withObject:nil waitUntilDone:NO];
+		else
+			[self performSelectorOnMainThread:@selector(notifyDelegateOfFailure) withObject:nil waitUntilDone:NO];
 
-	[pool drain];
+	}
 }
 
 - (void)start

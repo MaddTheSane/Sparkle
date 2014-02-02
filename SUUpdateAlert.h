@@ -26,7 +26,6 @@ typedef enum
 @interface SUUpdateAlert : SUWindowController {
 	SUAppcastItem *updateItem;
 	SUHost *host;
-	id<SUUpdateAlertDelegate> delegate;
 	id<SUVersionDisplay>	versionDisplayer;
 	
 	IBOutlet WebView *releaseNotesView;
@@ -37,7 +36,7 @@ typedef enum
 	NSProgressIndicator *releaseNotesSpinner;
 	BOOL webViewFinishedLoading;
 }
-@property (assign) id<SUUpdateAlertDelegate> delegate;
+@property (weak) id<SUUpdateAlertDelegate> delegate;
 
 - (id)initWithAppcastItem:(SUAppcastItem *)item host:(SUHost *)host;
 

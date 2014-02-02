@@ -18,118 +18,106 @@
 
 // Attack of accessors!
 
-- (NSString *)title { return [[title retain] autorelease]; }
+- (NSString *)title { return title; }
 
 - (void)setTitle:(NSString *)aTitle
 {
 	if (title == aTitle) return;
-    [title release];
     title = [aTitle copy];
 }
 
 
-- (NSDate *)date { return [[date retain] autorelease]; }
+- (NSDate *)date { return date; }
 
 - (void)setDate:(NSDate *)aDate
 {
 	if (date == aDate) return;
-    [date release];
     date = [aDate copy];
 }
 
 
-- (NSString *)itemDescription { return [[itemDescription retain] autorelease]; }
+- (NSString *)itemDescription { return itemDescription; }
 
 - (void)setItemDescription:(NSString *)anItemDescription
 {
 	if (itemDescription == anItemDescription) return;
-    [itemDescription release];
     itemDescription = [anItemDescription copy];
 }
 
 
-- (NSURL *)releaseNotesURL { return [[releaseNotesURL retain] autorelease]; }
+- (NSURL *)releaseNotesURL { return releaseNotesURL; }
 
 - (void)setReleaseNotesURL:(NSURL *)aReleaseNotesURL
 {
 	if (releaseNotesURL == aReleaseNotesURL) return;
-    [releaseNotesURL release];
     releaseNotesURL = [aReleaseNotesURL copy];
 }
 
 
-- (NSString *)DSASignature { return [[DSASignature retain] autorelease]; }
+- (NSString *)DSASignature { return DSASignature; }
 
 - (void)setDSASignature:(NSString *)aDSASignature
 {
 	if (DSASignature == aDSASignature) return;
-    [DSASignature release];
     DSASignature = [aDSASignature copy];
 }
 			
 
-- (NSURL *)fileURL { return [[fileURL retain] autorelease]; }
+- (NSURL *)fileURL { return fileURL; }
 
 - (void)setFileURL:(NSURL *)aFileURL
 {
 	if (fileURL == aFileURL) return;
-    [fileURL release];
     fileURL = [aFileURL copy];
 }
 
 
-- (NSString *)versionString { return [[versionString retain] autorelease]; }
+- (NSString *)versionString { return versionString; }
 
 - (void)setVersionString:(NSString *)s
 {
 	if (versionString == s) return;
-    [versionString release];
     versionString = [s copy];
 }
 
 
-- (NSString *)displayVersionString { return [[displayVersionString retain] autorelease]; }
+- (NSString *)displayVersionString { return displayVersionString; }
 
 - (void)setDisplayVersionString:(NSString *)s
 {
 	if (displayVersionString == s) return;
-    [displayVersionString release];
     displayVersionString = [s copy];
 }
 
 
-- (NSString *)minimumSystemVersion { return [[minimumSystemVersion retain] autorelease]; }
+- (NSString *)minimumSystemVersion { return minimumSystemVersion; }
 - (void)setMinimumSystemVersion:(NSString *)systemVersionString
 {
 	if (minimumSystemVersion == systemVersionString) return;
-	[minimumSystemVersion release];
 	minimumSystemVersion = [systemVersionString copy];
 }
 
-- (NSString *)maximumSystemVersion { return [[maximumSystemVersion retain] autorelease]; }
+- (NSString *)maximumSystemVersion { return maximumSystemVersion; }
 - (void)setMaximumSystemVersion:(NSString *)systemVersionString
 {
 	if (maximumSystemVersion == systemVersionString) return;
-	[maximumSystemVersion release];
 	maximumSystemVersion = [systemVersionString copy];
 }
 
 
-- (NSURL *)infoURL	{ return [[infoURL retain] autorelease]; }	// UK 2007-08-31 (whole method)
+- (NSURL *)infoURL	{ return infoURL; }	// UK 2007-08-31 (whole method)
 
 - (void)setInfoURL:(NSURL *)aFileURL	// UK 2007-08-31 (whole method)
 {
 	if( aFileURL == infoURL ) return;
-	[infoURL release];
 	infoURL = [aFileURL copy];
 }
 
-- (NSDictionary *)deltaUpdates { return [[deltaUpdates retain] autorelease]; }
+- (NSDictionary *)deltaUpdates { return deltaUpdates; }
 
 - (void)setDeltaUpdates:(NSDictionary *)updates
 {
 	if (deltaUpdates == updates) return;
-	[deltaUpdates release];
 	deltaUpdates = [updates copy];
 }
 
@@ -179,7 +167,6 @@
 		{
 			if (error)
 				*error = @"Feed item lacks sparkle:version attribute, and version couldn't be deduced from file name (would have used last component of a file name like AppName_1.3.4.zip)";
-			[self release];
 			return nil;
 		}
         
@@ -203,7 +190,6 @@
 		{
 			if (error)
 				*error = @"No enclosure in feed item";
-			[self release];
 			return nil;
 		}
 
@@ -212,7 +198,6 @@
 		{
 			if (error)
 				*error = @"Feed item's enclosure lacks URL";
-			[self release];
 			return nil;
 		}
 		
@@ -254,10 +239,8 @@
                 [fakeAppCastDict removeObjectForKey:@"deltas"];
                 [fakeAppCastDict setObject:deltaDictionary forKey:@"enclosure"];
                 SUAppcastItem *deltaItem = [[[self class] alloc] initWithDictionary:fakeAppCastDict];
-                [fakeAppCastDict release];
 
                 [deltas setObject:deltaItem forKey:[deltaDictionary objectForKey:@"sparkle:deltaFrom"]];
-                [deltaItem release];
             }
             [self setDeltaUpdates:deltas];
         }
@@ -277,8 +260,6 @@
     [self setVersionString:nil];
 	[self setDisplayVersionString:nil];
 	[self setInfoURL:nil];
-	[propertiesDictionary release];
-    [super dealloc];
 }
 
 - (NSDictionary *)propertiesDictionary

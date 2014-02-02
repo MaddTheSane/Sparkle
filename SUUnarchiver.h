@@ -13,11 +13,10 @@
 @protocol SUUnarchiverDelegate;
 
 @interface SUUnarchiver : NSObject {
-	id<SUUnarchiverDelegate> delegate;
 	NSString *archivePath;
 	SUHost *updateHost;
 }
-@property (assign)id<SUUnarchiverDelegate> delegate;
+@property (weak) id<SUUnarchiverDelegate> delegate;
 
 + (SUUnarchiver *)unarchiverForPath:(NSString *)path updatingHost:(SUHost *)host;
 

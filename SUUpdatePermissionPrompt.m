@@ -23,11 +23,11 @@
 	self = [super initWithHost:aHost windowNibName:@"SUUpdatePermissionPrompt"];
 	if (self)
 	{
-		host = [aHost retain];
+		host = aHost;
 		delegate = d;
 		isShowingMoreInfo = NO;
 		shouldSendProfile = [self shouldAskAboutProfile];
-		systemProfileInformationArray = [profile retain];
+		systemProfileInformationArray = profile;
 		[self setShouldCascadeWindows:NO];
 	}
 	return self;
@@ -40,7 +40,7 @@
 	// the user would not know why the application was paused.
 	if ([aHost isBackgroundApplication]) { [NSApp activateIgnoringOtherApps:YES]; }
 	
-	id prompt = [[[[self class] alloc] initWithHost:aHost systemProfile:profile delegate:d] autorelease];
+	id prompt = [[[self class] alloc] initWithHost:aHost systemProfile:profile delegate:d];
 	[NSApp runModalForWindow:[prompt window]];
 }
 
@@ -60,13 +60,6 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row { return NO; }
-
-- (void)dealloc
-{
-	[host release];
-	[systemProfileInformationArray release];
-	[super dealloc];
-}
 
 - (NSImage *)icon
 {

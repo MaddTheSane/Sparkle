@@ -17,21 +17,15 @@
 	self = [super initWithHost:aHost windowNibName:@"SUAutomaticUpdateAlert"];
 	if (self)
 	{
-		updateItem = [item retain];
+		updateItem = item;
 		delegate = del;
-		host = [aHost retain];
+		host = aHost;
 		[self setShouldCascadeWindows:NO];	
 		[[self window] center];
 	}
 	return self;
 }
 
-- (void)dealloc
-{
-	[host release];
-	[updateItem release];
-	[super dealloc];
-}
 
 - (NSString *)description { return [NSString stringWithFormat:@"%@ <%@, %@>", [self class], [host bundlePath], [host installationPath]]; }
 

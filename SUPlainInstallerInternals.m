@@ -477,7 +477,7 @@ static BOOL AuthorizationExecuteWithPrivilegesAndWait(AuthorizationRef authoriza
 	{ 
 		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5)
 		{
-			NSFileManager *manager = [[[NSFileManager alloc] init] autorelease];
+			NSFileManager *manager = [[NSFileManager alloc] init];
 			BOOL success = [manager moveItemAtPath:dst toPath:tmpPath error:error];
 			if (!success && hadFileAtDest)
 			{
@@ -487,7 +487,7 @@ static BOOL AuthorizationExecuteWithPrivilegesAndWait(AuthorizationRef authoriza
 			}
 			
 		} else {
-			err = FSMoveObjectSync(&dstRef, &tmpDirRef, (CFStringRef)[tmpPath lastPathComponent], &movedRef, 0);
+			err = FSMoveObjectSync(&dstRef, &tmpDirRef, (__bridge CFStringRef)[tmpPath lastPathComponent], &movedRef, 0);
 			if (err != noErr && hadFileAtDest)
 			{
 				if (error != NULL)
@@ -502,7 +502,7 @@ static BOOL AuthorizationExecuteWithPrivilegesAndWait(AuthorizationRef authoriza
 	{
 		if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_5)
 		{
-			NSFileManager *manager = [[[NSFileManager alloc] init] autorelease];
+			NSFileManager *manager = [[NSFileManager alloc] init];
 			BOOL success = [manager copyItemAtPath:src toPath:dst error:error];
 			if (!success)
 			{
@@ -515,12 +515,12 @@ static BOOL AuthorizationExecuteWithPrivilegesAndWait(AuthorizationRef authoriza
 
 			}
 		} else {
-			err = FSCopyObjectSync(&srcRef, &dstDirRef, (CFStringRef)[dst lastPathComponent], NULL, 0);
+			err = FSCopyObjectSync(&srcRef, &dstDirRef, (__bridge CFStringRef)[dst lastPathComponent], NULL, 0);
 			if (err != noErr)
 			{
 				// We better move the old version back to its old location
 				if( hadFileAtDest )
-					FSMoveObjectSync(&movedRef, &dstDirRef, (CFStringRef)[dst lastPathComponent], &movedRef, 0);
+					FSMoveObjectSync(&movedRef, &dstDirRef, (__bridge CFStringRef)[dst lastPathComponent], &movedRef, 0);
 				if (error != NULL)
 					*error = [NSError errorWithDomain:SUSparkleErrorDomain code:SUFileCopyFailure userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Couldn't copy %@ to %@.", src, dst] forKey:NSLocalizedDescriptionKey]];
 				return NO;			

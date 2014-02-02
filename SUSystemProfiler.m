@@ -24,7 +24,7 @@
 - (NSDictionary *)modelTranslationTable
 {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"SUModelTranslation" ofType:@"plist"];
-	return [[[NSDictionary alloc] initWithContentsOfFile:path] autorelease];
+	return [[NSDictionary alloc] initWithContentsOfFile:path];
 }
 
 - (NSMutableArray *)systemProfileArrayForHost:(SUHost *)host

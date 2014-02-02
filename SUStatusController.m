@@ -22,19 +22,10 @@
 	self = [super initWithHost:aHost windowNibName:@"SUStatus"];
 	if (self)
 	{
-		host = [aHost retain];
+		host = aHost;
 		[self setShouldCascadeWindows:NO];
 	}
 	return self;
-}
-
-- (void)dealloc
-{
-	[host release];
-	[title release];
-	[statusText release];
-	[buttonTitle release];
-	[super dealloc];
 }
 
 - (NSString *)description { return [NSString stringWithFormat:@"%@ <%@, %@>", [self class], [host bundlePath], [host installationPath]]; }
@@ -75,7 +66,6 @@
 	[self willChangeValueForKey:@"buttonTitle"];
 	if (buttonTitle != aButtonTitle)
 	{
-		[buttonTitle release];
 		buttonTitle = [aButtonTitle copy];
 	}
 	[self didChangeValueForKey:@"buttonTitle"];	
@@ -136,7 +126,6 @@
 {
 	if (statusText != aStatusText)
 	{
-		[statusText release];
 		statusText = [aStatusText copy];
 	}
 }

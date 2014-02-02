@@ -16,14 +16,13 @@ extern NSString * const SUUpdateDriverFinishedNotification;
 @class SUHost, SUUpdater;
 @interface SUUpdateDriver : NSObject<NSURLDownloadDelegate>
 {
-	SUHost *host;
 	SUUpdater *updater;
 	NSURL *appcastURL;
 	
 	BOOL finished;
 	BOOL isInterruptible;
 }
-@property (retain) SUHost *host;
+@property (strong) SUHost *host;
 
 - initWithUpdater:(SUUpdater *)updater;
 - (void)checkForUpdatesAtURL:(NSURL *)URL host:(SUHost *)host;
