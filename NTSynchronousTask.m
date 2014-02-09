@@ -65,12 +65,6 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    self.task = nil;
-    self.outputPipe = nil;
-    self.inputPipe = nil;
-	self.output = nil;
-
 }
 
 - (void)run:(NSString*)toolPath directory:(NSString*)currentDirectory withArgs:(NSArray*)args input:(NSData*)input
@@ -146,7 +140,6 @@
 	}	
 	@catch (NSException *localException) { }
 	
-	
     return result;
 	}
 }
@@ -156,24 +149,24 @@
 {
 	// we need this wacky pool here, otherwise we run out of pipes, the pipes are internally autoreleased
 	@autoreleasepool {
-	int					taskResult = 0;
-	if( outData )
-		*outData = nil;
-	
-	@try {
-		NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
-		
-		[task run:toolPath directory:currentDirectory withArgs:args input:input];
-		
-		taskResult = [task result];
+		int				taskResult = 0;
 		if( outData )
-			*outData = [task output];
-				
-	} @catch (NSException *localException) {
-		taskResult = errCppGeneral;
-	}
-	
-    return taskResult;
+			*outData = nil;
+		
+		@try {
+			NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
+			
+			[task run:toolPath directory:currentDirectory withArgs:args input:input];
+			
+			taskResult = [task result];
+			if( outData )
+				*outData = [task output];
+			
+		} @catch (NSException *localException) {
+			taskResult = errCppGeneral;
+		}
+		
+		return taskResult;
 	}
 }
 

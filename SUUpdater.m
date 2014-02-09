@@ -537,7 +537,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 - (void)dealloc
 {
 	[self unregisterAsObserver];
-	if (checkTimer) { [checkTimer invalidate]; checkTimer = nil; }		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
+	if (checkTimer) { [checkTimer invalidate]; }		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 }
 
 - (BOOL)validateMenuItem:(NSMenuItem *)item
