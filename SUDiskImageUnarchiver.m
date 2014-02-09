@@ -25,7 +25,7 @@
 	
 	@autoreleasepool {
     
-        NSData *result = [NTSynchronousTask task:@"/usr/bin/hdiutil" directory:@"/" withArgs:[NSArray arrayWithObjects: @"isencrypted", archivePath, nil] input:NULL];
+        NSData *result = [NTSynchronousTask task:@"/usr/bin/hdiutil" directory:@"/" withArgs:@[@"isencrypted", archivePath] input:NULL];
 	if([self isEncrypted:result] && [delegate respondsToSelector:@selector(unarchiver:requiresPasswordReturnedViaInvocation:)]) {
             [self performSelectorOnMainThread:@selector(requestPasswordFromDelegate) withObject:nil waitUntilDone:NO];
         } else {
@@ -75,7 +75,7 @@
 		else
 			promptData = [NSData dataWithBytes:"yes\n" length:4];
 		
-    NSArray* arguments = [NSArray arrayWithObjects:@"attach", archivePath, @"-mountpoint", mountPoint, /*@"-noverify",*/ @"-nobrowse", @"-noautoopen", nil];
+    NSArray* arguments = @[@"attach", archivePath, @"-mountpoint", mountPoint, /*@"-noverify",*/ @"-nobrowse", @"-noautoopen"];
     
     NSData *output = nil;
 		NSInteger taskResult = -1;
@@ -156,7 +156,7 @@ reportError:
 
 finally:
 		if (mountedSuccessfully)
-			[NSTask launchedTaskWithLaunchPath:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects:@"detach", mountPoint, @"-force", nil]];
+			[NSTask launchedTaskWithLaunchPath:@"/usr/bin/hdiutil" arguments:@[@"detach", mountPoint, @"-force"]];
 		else
 			SULog(@"Can't mount DMG %@",archivePath);
 	}

@@ -129,7 +129,7 @@ NSString *hashOfTree(NSString *path)
         _hashOfFile(fileHash, ent);
         CC_SHA1_Update(&hashContext, fileHash, sizeof(fileHash));
 
-        NSString *relativePath = pathRelativeToDirectory(path, [NSString stringWithUTF8String:ent->fts_path]);
+        NSString *relativePath = pathRelativeToDirectory(path, @(ent->fts_path));
         NSData *relativePathBytes = [relativePath dataUsingEncoding:NSUTF8StringEncoding];
         CC_SHA1_Update(&hashContext, [relativePathBytes bytes], (uint32_t)[relativePathBytes length]);
     }
@@ -143,7 +143,7 @@ NSString *hashOfTree(NSString *path)
     for (i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
         sprintf(hexHash + i * 2, "%02x", hash[i]);
 
-    return [NSString stringWithUTF8String:hexHash];
+    return @(hexHash);
 }
 
 void removeTree(NSString *path)

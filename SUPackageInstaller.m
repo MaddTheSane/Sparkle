@@ -20,14 +20,14 @@ NSString *SUPackageInstallerInstallationPathKey = @"SUPackageInstallerInstallati
 
 + (void)finishInstallationWithInfo:(NSDictionary *)info
 {
-	[self finishInstallationToPath:[info objectForKey:SUPackageInstallerInstallationPathKey] withResult:YES host:[info objectForKey:SUPackageInstallerHostKey] error:nil delegate:[info objectForKey:SUPackageInstallerDelegateKey]];
+	[self finishInstallationToPath:info[SUPackageInstallerInstallationPathKey] withResult:YES host:info[SUPackageInstallerHostKey] error:nil delegate:info[SUPackageInstallerDelegateKey]];
 }
 
 + (void)performInstallationWithInfo:(NSDictionary *)info
 {
 	@autoreleasepool {
 	
-		NSTask *installer = [NSTask launchedTaskWithLaunchPath:[info objectForKey:SUPackageInstallerCommandKey] arguments:[info objectForKey:SUPackageInstallerArgumentsKey]];
+		NSTask *installer = [NSTask launchedTaskWithLaunchPath:info[SUPackageInstallerCommandKey] arguments:info[SUPackageInstallerArgumentsKey]];
 		[installer waitUntilExit];
 		
 		// Known bug: if the installation fails or is canceled, Sparkle goes ahead and restarts, thinking everything is fine.
@@ -44,7 +44,7 @@ NSString *SUPackageInstallerInstallationPathKey = @"SUPackageInstallerInstallati
 	if (floor(NSAppKitVersionNumber) == NSAppKitVersionNumber10_4) {
 		// 10.4 uses Installer.app because the "open" command in 10.4 doesn't support -W and -n
 		command = [[NSBundle bundleWithIdentifier:@"com.apple.installer"] executablePath];
-		args = [NSArray arrayWithObjects:path, nil];
+		args = @[path];
 	} else {
 		// 10.5 and later. Run installer using the "open" command to ensure it is launched in front of current application.
 		// The -W and -n options were added to the 'open' command in 10.5
@@ -52,16 +52,16 @@ NSString *SUPackageInstallerInstallationPathKey = @"SUPackageInstallerInstallati
 		// -n = Open another instance if already open.
 		// -b = app bundle identifier
 		command = @"/usr/bin/open";
-		args = [NSArray arrayWithObjects:@"-W", @"-n", @"-b", @"com.apple.installer", path, nil];
+		args = @[@"-W", @"-n", @"-b", @"com.apple.installer", path];
 	}
 	if (![[NSFileManager defaultManager] fileExistsAtPath:command])
 	{
-		NSError *error = [NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingInstallerToolError userInfo:[NSDictionary dictionaryWithObject:@"Couldn't find Apple's installer tool!" forKey:NSLocalizedDescriptionKey]];
+		NSError *error = [NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingInstallerToolError userInfo:@{NSLocalizedDescriptionKey: @"Couldn't find Apple's installer tool!"}];
 		[self finishInstallationToPath:installationPath withResult:NO host:host error:error delegate:delegate];
 	}
 	else 
 	{
-		NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:command, SUPackageInstallerCommandKey, args, SUPackageInstallerArgumentsKey, host, SUPackageInstallerHostKey, delegate, SUPackageInstallerDelegateKey, installationPath, SUPackageInstallerInstallationPathKey, nil];
+		NSDictionary *info = @{SUPackageInstallerCommandKey: command, SUPackageInstallerArgumentsKey: args, SUPackageInstallerHostKey: host, SUPackageInstallerDelegateKey: delegate, SUPackageInstallerInstallationPathKey: installationPath};
 		if (synchronously)
 			[self performInstallationWithInfo:info];
 		else

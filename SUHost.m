@@ -55,7 +55,7 @@
         appSupportPath = [@"~/Library/Application Support" stringByExpandingTildeInPath];
     }
     else
-        appSupportPath = [appSupportPaths objectAtIndex:0];
+        appSupportPath = appSupportPaths[0];
     appSupportPath = [appSupportPath stringByAppendingPathComponent:[self name]];
     appSupportPath = [appSupportPath stringByAppendingPathComponent:@".Sparkle"];
     return appSupportPath;
@@ -134,7 +134,7 @@
 	ProcessSerialNumber PSN;
 	GetCurrentProcess(&PSN);
 	CFDictionaryRef processInfo = ProcessInformationCopyDictionary(&PSN, kProcessDictionaryIncludeAllInformationMask);
-	BOOL isElement = [[(__bridge NSDictionary *)processInfo objectForKey:@"LSUIElement"] boolValue];
+	BOOL isElement = [((__bridge NSDictionary *)processInfo)[@"LSUIElement"] boolValue];
 	if (processInfo)
 		CFRelease(processInfo);
 	return isElement;
@@ -218,7 +218,7 @@
 	}
 	else
 	{
-		CFPreferencesSetValue((__bridge CFStringRef)defaultName, (__bridge CFBooleanRef)[NSNumber numberWithBool:value], (__bridge CFStringRef)defaultsDomain,  kCFPreferencesCurrentUser,  kCFPreferencesAnyHost);
+		CFPreferencesSetValue((__bridge CFStringRef)defaultName, (__bridge CFBooleanRef)@(value), (__bridge CFStringRef)defaultsDomain,  kCFPreferencesCurrentUser,  kCFPreferencesAnyHost);
 		CFPreferencesSynchronize((__bridge CFStringRef)defaultsDomain, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 	}
 }
@@ -248,7 +248,7 @@
 	else
 	{
 	 	NSString *versionPlistPath = @"/System/Library/CoreServices/SystemVersion.plist";
-		verStr = [[NSDictionary dictionaryWithContentsOfFile:versionPlistPath] objectForKey:@"ProductVersion"];
+		verStr = [NSDictionary dictionaryWithContentsOfFile:versionPlistPath][@"ProductVersion"];
 	}
 	return verStr;
 }

@@ -123,7 +123,7 @@ static NSString*	sUpdateFolder = nil;
     
 	if (newAppDownloadPath == nil)
 	{
-		[self finishInstallationToPath:installationPath withResult:NO host:host error:[NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingUpdateError userInfo:[NSDictionary dictionaryWithObject:@"Couldn't find an appropriate update in the downloaded package." forKey:NSLocalizedDescriptionKey]] delegate:delegate];
+		[self finishInstallationToPath:installationPath withResult:NO host:host error:[NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingUpdateError userInfo:@{NSLocalizedDescriptionKey: @"Couldn't find an appropriate update in the downloaded package."}] delegate:delegate];
 	}
 	else
 	{
@@ -139,7 +139,7 @@ static NSString*	sUpdateFolder = nil;
 	
 	NSTask *mdimport = [[NSTask alloc] init];
 	[mdimport setLaunchPath:@"/usr/bin/mdimport"];
-	[mdimport setArguments:[NSArray arrayWithObject:installationPath]];
+	[mdimport setArguments:@[installationPath]];
 	@try
 	{
 		[mdimport launch];
@@ -168,14 +168,14 @@ static NSString*	sUpdateFolder = nil;
 	else
 	{
 		if ([delegate respondsToSelector:@selector(installerForHost:failedWithError:)])
-			[self performSelectorOnMainThread: @selector(notifyDelegateOfFailure:) withObject: [NSDictionary dictionaryWithObjectsAndKeys: host, SUNotifyDictHostKey, error, SUNotifyDictErrorKey, delegate, SUNotifyDictDelegateKey, nil] waitUntilDone: NO];
+			[self performSelectorOnMainThread: @selector(notifyDelegateOfFailure:) withObject: @{SUNotifyDictHostKey: host, SUNotifyDictErrorKey: error, SUNotifyDictDelegateKey: delegate} waitUntilDone: NO];
 	}		
 }
 
 
 +(void)	notifyDelegateOfFailure: (NSDictionary*)dict
 {
-	[[dict objectForKey: SUNotifyDictDelegateKey] installerForHost: [dict objectForKey: SUNotifyDictHostKey] failedWithError: [dict objectForKey: SUNotifyDictErrorKey]];
+	[dict[SUNotifyDictDelegateKey] installerForHost: dict[SUNotifyDictHostKey] failedWithError: dict[SUNotifyDictErrorKey]];
 }
 
 @end
