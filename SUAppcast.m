@@ -23,34 +23,37 @@
 - (NSDictionary *)attributesAsDictionary
 {
 	NSEnumerator *attributeEnum = [[self attributes] objectEnumerator];
-	NSXMLNode *attribute;
 	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-	while ((attribute = [attributeEnum nextObject]))
+	for (NSXMLNode *attribute in attributeEnum) {
 		[dictionary setObject:[attribute stringValue] forKey:[attribute name]];
+	}
 	return dictionary;
 }
 @end
 
 @interface SUAppcast () <NSURLDownloadDelegate>
+@property (copy) NSString *downloadFilename;
+@property (retain) NSURLDownload *download;
+@property (copy) NSArray *items;
 - (void)reportError:(NSError *)error;
 - (NSXMLNode *)bestNodeInNodes:(NSArray *)nodes;
 @end
 
 @implementation SUAppcast
-
-- (NSArray *)items
-{
-	return items;
-}
+@synthesize downloadFilename;
+@synthesize delegate;
+@synthesize userAgentString;
+@synthesize download;
+@synthesize items;
 
 - (void)fetchAppcastFromURL:(NSURL *)url
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     if (userAgentString)
         [request setValue:userAgentString forHTTPHeaderField:@"User-Agent"];
-            
-    download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
+	
+    self.download = [[NSURLDownload alloc] initWithRequest:request delegate:self];
 }
 
 - (void)download:(NSURLDownload *)aDownload decideDestinationWithSuggestedFilename:(NSString *)filename
@@ -65,7 +68,7 @@
 
 - (void)download:(NSURLDownload *)aDownload didCreateDestination:(NSString *)path
 {
-    downloadFilename = [path copy];
+    self.downloadFilename = path;
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)aDownload
@@ -90,7 +93,7 @@
 		document = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:downloadFilename] options:options error:&error];
 	
 		[[NSFileManager defaultManager] removeItemAtPath:downloadFilename error:nil];
-		downloadFilename = nil;
+		self.downloadFilename = nil;
 	}
 	else
 	{
@@ -141,9 +144,7 @@
                 }
             }
             
-            NSEnumerator *nameEnum = [nodesDict keyEnumerator];
-            NSString *name;
-            while ((name = [nameEnum nextObject]))
+            for (NSString *name in nodesDict)
             {
                 node = [self bestNodeInNodes:[nodesDict objectForKey:name]];
 				if ([name isEqualToString:@"enclosure"])
@@ -164,8 +165,7 @@
 				{
 					NSMutableArray *deltas = [NSMutableArray array];
 					NSEnumerator *childEnum = [[node children] objectEnumerator];
-					NSXMLNode *child;
-					while ((child = [childEnum nextObject])) {
+					for (NSXMLNode *child in childEnum) {
 						if ([[child name] isEqualToString:@"enclosure"])
 							[deltas addObject:[(NSXMLElement *)child attributesAsDictionary]];
 					}
@@ -200,7 +200,7 @@
     {
 		NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 		[appcastItems sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-		items = [appcastItems copy];
+		self.items = appcastItems;
 	}
 	
 	if (failed)
@@ -219,7 +219,7 @@
 	{
 		[[NSFileManager defaultManager] removeItemAtPath:downloadFilename error:nil];
 	}
-    downloadFilename = nil;
+	self.downloadFilename = nil;
     
 	[self reportError:error];
 }
@@ -245,13 +245,10 @@
     else if ([nodes count] == 0)
         return nil;
     
-    NSEnumerator *nodeEnum = [nodes objectEnumerator];
-    NSXMLElement *node;
     NSMutableArray *languages = [NSMutableArray array];
     NSString *lang;
     NSUInteger i;
-    while ((node = [nodeEnum nextObject]))
-    {
+	for (NSXMLElement *node in nodes) {
         lang = [[node attributeForName:@"xml:lang"] stringValue];
         [languages addObject:(lang ? lang : @"")];
     }
@@ -260,19 +257,6 @@
     if (i == NSNotFound)
         i = 0;
     return [nodes objectAtIndex:i];
-}
-
-- (void)setUserAgentString:(NSString *)uas
-{
-	if (uas != userAgentString)
-	{
-		userAgentString = [uas copy];
-	}
-}
-
-- (void)setDelegate:del
-{
-	delegate = del;
 }
 
 @end

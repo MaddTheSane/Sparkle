@@ -29,6 +29,7 @@ NSString *const SUUpdaterAppcastItemNotificationKey = @"SUUpdaterAppcastItemNoti
 NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotificationKey";
 
 @interface SUUpdater ()
+@property NSTimer *checkTimer;
 - (id)initForBundle:(NSBundle *)bundle;
 - (void)startUpdateCycle;
 - (void)checkForUpdatesWithDriver:(SUUpdateDriver *)updateDriver;
@@ -46,6 +47,8 @@ NSString *const SUUpdaterAppcastNotificationKey = @"SUUpdaterAppCastNotification
 
 @implementation SUUpdater
 @synthesize delegate;
+@synthesize checkTimer;
+
 #pragma mark Initialization
 
 static NSMutableDictionary *sharedUpdaters = nil;
@@ -207,8 +210,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	if (checkTimer)
 	{
 		[checkTimer invalidate];
-				// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
-		checkTimer = nil;
+		self.checkTimer = nil; // UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 	}
 	if (![self automaticallyChecksForUpdates]) return;
 	
@@ -224,7 +226,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	if (intervalSinceCheck < updateCheckInterval)
 		delayUntilCheck = (updateCheckInterval - intervalSinceCheck); // It hasn't been long enough.
 	else
-		delayUntilCheck = 0; // We're overdue! Run one now.
+	self.checkTimer = [NSTimer scheduledTimerWithTimeInterval:delayUntilCheck target:self selector:@selector(checkForUpdatesInBackground) userInfo:nil repeats:NO];		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 	checkTimer = [NSTimer scheduledTimerWithTimeInterval:delayUntilCheck target:self selector:@selector(checkForUpdatesInBackground) userInfo:nil repeats:NO];		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 }
 
@@ -315,7 +317,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 - (void)checkForUpdatesWithDriver:(SUUpdateDriver *)d
 {
 	if ([self updateInProgress]) { return; }
-	if (checkTimer) { [checkTimer invalidate]; checkTimer = nil; }		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
+	if (checkTimer) { [checkTimer invalidate]; self.checkTimer = nil; }		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 	
 	SUClearLog();
 	SULog( @"===== %@ =====", [[NSFileManager defaultManager] displayNameAtPath: [[NSBundle mainBundle] bundlePath]] );
@@ -499,9 +501,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	
 	// Build up the parameterized URL.
 	NSMutableArray *parameterStrings = [NSMutableArray array];
-	NSEnumerator *profileInfoEnumerator = [parameters objectEnumerator];
-	NSDictionary *currentProfileInfo;
-	while ((currentProfileInfo = [profileInfoEnumerator nextObject]))
+	for (NSDictionary *currentProfileInfo in parameters)
 		[parameterStrings addObject:[NSString stringWithFormat:@"%@=%@", [[[currentProfileInfo objectForKey:@"key"] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [[[currentProfileInfo objectForKey:@"value"] description] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 	
 	NSString *separatorCharacter = @"?";
@@ -547,17 +547,11 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	return YES;
 }
 
-- (void)setDelegate:aDelegate
-{
-	delegate = aDelegate;
-}
-
 - (BOOL)updateInProgress
 {
 	return driver && ([driver finished] == NO);
 }
 
-- (id)delegate { return delegate; }
 - (NSBundle *)hostBundle { return [host bundle]; }
 
 @end
