@@ -12,7 +12,6 @@
 NSString * const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 @implementation SUUpdateDriver
-
 @synthesize host;
 
 - initWithUpdater:(SUUpdater *)anUpdater
@@ -26,7 +25,7 @@ NSString * const SUUpdateDriverFinishedNotification = @"SUUpdateDriverFinished";
 
 - (void)checkForUpdatesAtURL:(NSURL *)URL host:(SUHost *)h
 {
-	appcastURL = [URL copy];
+	appcastURL = URL;
 	host = h;
 }
 

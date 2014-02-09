@@ -226,6 +226,7 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 	if (intervalSinceCheck < updateCheckInterval)
 		delayUntilCheck = (updateCheckInterval - intervalSinceCheck); // It hasn't been long enough.
 	else
+		delayUntilCheck = 0; // We're overdue! Run one now.
 	self.checkTimer = [NSTimer scheduledTimerWithTimeInterval:delayUntilCheck target:self selector:@selector(checkForUpdatesInBackground) userInfo:nil repeats:NO];		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 	checkTimer = [NSTimer scheduledTimerWithTimeInterval:delayUntilCheck target:self selector:@selector(checkForUpdatesInBackground) userInfo:nil repeats:NO];		// UK 2009-03-16 Timer is non-repeating, may have invalidated itself, so we had to retain it.
 }

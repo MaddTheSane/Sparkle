@@ -60,7 +60,6 @@ extern OSStatus SecStaticCodeCheckValidityWithErrors(SecStaticCodeRef staticCode
     
     result = SecStaticCodeCheckValidityWithErrors(staticCode, kSecCSDefaultFlags | kSecCSCheckAllArchitectures, requirement, &cfError);
 	*error = CFBridgingRelease(cfError);
-    //if (result != 0 && error) [*error autorelease];
     
 finally:
     if (hostCode) CFRelease(hostCode);

@@ -115,7 +115,7 @@
 			return nil;
 		}
 
-		NSString*	enclosureURLString = enclosure[@"url"];
+		NSString *enclosureURLString = enclosure[@"url"];
 		if( !enclosureURLString && !theInfoURL )
 		{
 			if (error)

@@ -20,7 +20,7 @@
 	BOOL mv_done;
 	int mv_result;
 }
-@property (readonly, retain) NSData *output;
+@property (readonly, strong) NSData *output;
 @property (readonly) int result;
 
 // pass nil for directory if not needed

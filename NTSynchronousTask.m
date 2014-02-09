@@ -14,10 +14,10 @@
 #import "NTSynchronousTask.h"
 
 @interface NTSynchronousTask ()
-@property (retain) NSTask *task;
-@property (retain) NSPipe *outputPipe;
-@property (retain) NSPipe *inputPipe;
-@property (readwrite, retain) NSData *output;
+@property (strong) NSTask *task;
+@property (strong) NSPipe *outputPipe;
+@property (strong) NSPipe *inputPipe;
+@property (readwrite, strong) NSData *output;
 @property (getter = isDone) BOOL done;
 @property (readwrite) int result;
 @end
@@ -126,21 +126,21 @@
 {
 	// we need this wacky pool here, otherwise we run out of pipes, the pipes are internally autoreleased
 	@autoreleasepool {
-	NSData* result = nil;
-	
-	@try
-	{
-		NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
+		NSData* result = nil;
 		
-		[task run:toolPath directory:currentDirectory withArgs:args input:input];
+		@try
+		{
+			NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
+			
+			[task run:toolPath directory:currentDirectory withArgs:args input:input];
+			
+			if ([task result] == 0)
+				result = [task output];
+			
+		}
+		@catch (NSException *localException) { }
 		
-		if ([task result] == 0)
-			result = [task output];
-				
-	}	
-	@catch (NSException *localException) { }
-	
-    return result;
+		return result;
 	}
 }
 

@@ -16,7 +16,6 @@
 
 @class SUAppcastItem, SUHost;
 @interface SUBasicUpdateDriver : SUUpdateDriver<NSURLDownloadDelegate, SUUnarchiverDelegate, SUAppcastDelegate> {
-	SUHost *host;
 	SUAppcastItem *updateItem;
 	SUAppcastItem *nonDeltaUpdateItem;
 	
