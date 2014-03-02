@@ -489,7 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				5D06E8D00FD68C7C005AE3F6 /* BinaryDelta */,
-				55C14BB7136EEF1500649790 /* finish_installation.app */,
+				55C14BB7136EEF1500649790 /* Autoupdate.app */,
 				61B5F90209C4CEE200B25A18 /* Sparkle Test App.app */,
 				612279D90DB5470200AB99EA /* Sparkle Unit Tests.octest */,
 				8DC2EF5B0486A6940098B216 /* Sparkle.framework */,
@@ -1006,7 +1006,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55C14F3B136EFCB300649790 /* finish_installation.app in Resources */,
+				55C14F3B136EFCB300649790 /* Autoupdate.app in Resources */,
 				61C2680A0E2DB5D000175E6C /* License.txt in Resources */,
 				61AAE8280A321A7F00D8810D /* Sparkle.strings in Resources */,
 				55C14BEE136EF20D00649790 /* SUAutomaticUpdateAlert.xib in Resources */,
@@ -1411,6 +1411,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
 			};
 			name = Release;
 		};
