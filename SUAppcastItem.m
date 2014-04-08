@@ -123,8 +123,10 @@
 			return nil;
 		}
 		
-		if( enclosureURLString )
-			self.fileURL =  [NSURL URLWithString: [enclosureURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		if( enclosureURLString ) {
+			NSString *fileURLString = [[enclosureURLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			self.fileURL = [NSURL URLWithString:fileURLString];
+		}
 		if( enclosure )
 			self.DSASignature = enclosure[@"sparkle:dsaSignature"];
 		
