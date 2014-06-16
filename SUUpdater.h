@@ -27,7 +27,7 @@
 
 + (SUUpdater *)sharedUpdater;
 + (SUUpdater *)updaterForBundle:(NSBundle *)bundle;
-- (id)initForBundle:(NSBundle *)bundle;
+- (instancetype)initForBundle:(NSBundle *)bundle;
 
 - (NSBundle *)hostBundle;
 
@@ -79,10 +79,11 @@
 extern NSString *const SUUpdaterDidFinishLoadingAppCastNotification;
 extern NSString *const SUUpdaterDidFindValidUpdateNotification;
 extern NSString *const SUUpdaterDidNotFindUpdateNotification;
-extern NSString *const SUUpdaterWillInstallUpdateNotification;
-extern NSString *const SUUpdaterWillRelaunchApplicationNotification;
+extern NSString *const SUUpdaterWillRestartNotification;
+#define SUUpdaterWillRelaunchApplicationNotification SUUpdaterWillRestartNotification;
+#define SUUpdaterWillInstallUpdateNotification SUUpdaterWillRestartNotification;
 
-// Key for the SUAppcastItem object in the SUUpdaterDidFindValidUpdateNotification & SUUpdaterWillInstallUpdateNotification userInfos
+// Key for the SUAppcastItem object in the SUUpdaterDidFindValidUpdateNotification userInfo
 extern NSString *const SUUpdaterAppcastItemNotificationKey;
 // Key for the SUAppcast object in the SUUpdaterDidFinishLoadingAppCastNotification userInfo
 extern NSString *const SUUpdaterAppcastNotificationKey;
@@ -160,10 +161,6 @@ extern NSString *const SUUpdaterAppcastNotificationKey;
 // -----------------------------------------------------------------------------
 //	Constants:
 // -----------------------------------------------------------------------------
-
-#ifndef DEBUG
-#define DEBUG	0
-#endif
 
 // Define some minimum intervals to avoid DOS-like checking attacks. These are in seconds.
 #if defined(DEBUG) && DEBUG && 0
