@@ -34,27 +34,25 @@ static NSString * const SUInstallerInstallationPathKey = @"SUInstallerInstallati
 	// *** GETS CALLED ON NON-MAIN THREAD!
 	
 	@autoreleasepool {
+	NSError *error;
 	
-		NSError *error = nil;
-		
-		NSString	*	oldPath = [info[SUInstallerHostKey] bundlePath];
-		NSString	*	installationPath = info[SUInstallerInstallationPathKey];
-		BOOL result = [self copyPathWithAuthentication:info[SUInstallerPathKey] overPath: installationPath temporaryName:info[SUInstallerTempNameKey] error:&error];
-		
-		if( result )
-		{
-			BOOL	haveOld = [[NSFileManager defaultManager] fileExistsAtPath: oldPath];
-			BOOL	differentFromNew = ![oldPath isEqualToString: installationPath];
-			if( haveOld && differentFromNew )
-				[self _movePathToTrash: oldPath];	// On success, trash old copy if there's still one due to renaming.
-		}
-		NSMutableDictionary *mutableInfo = [info mutableCopy];
-		mutableInfo[SUInstallerResultKey] = @(result);
-    mutableInfo[SUInstallerInstallationPathKey] = installationPath;
-		if (!result && error)
-			mutableInfo[SUInstallerErrorKey] = error;
-		[self performSelectorOnMainThread:@selector(finishInstallationWithInfo:) withObject:mutableInfo waitUntilDone:NO];
-    
+	NSString	*	oldPath = [info[SUInstallerHostKey] bundlePath];
+	NSString	*	installationPath = info[SUInstallerInstallationPathKey];
+	BOOL result = [self copyPathWithAuthentication:info[SUInstallerPathKey] overPath: installationPath temporaryName:info[SUInstallerTempNameKey] error:&error];
+	
+	if( result )
+	{
+		BOOL	haveOld = [[NSFileManager defaultManager] fileExistsAtPath: oldPath];
+		BOOL	differentFromNew = ![oldPath isEqualToString: installationPath];
+		if( haveOld && differentFromNew )
+			[self _movePathToTrash: oldPath];	// On success, trash old copy if there's still one due to renaming.
+	}
+	NSMutableDictionary *mutableInfo = [info mutableCopy];
+	mutableInfo[SUInstallerResultKey] = @(result);
+mutableInfo[SUInstallerInstallationPathKey] = installationPath;
+	if (!result && error)
+		mutableInfo[SUInstallerErrorKey] = error;
+	[self performSelectorOnMainThread:@selector(finishInstallationWithInfo:) withObject:mutableInfo waitUntilDone:NO];
 	}
 }
 

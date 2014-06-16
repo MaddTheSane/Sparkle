@@ -126,21 +126,21 @@
 {
 	// we need this wacky pool here, otherwise we run out of pipes, the pipes are internally autoreleased
 	@autoreleasepool {
-		NSData* result = nil;
+	NSData* result = nil;
+	
+	@try
+	{
+		NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
 		
-		@try
-		{
-			NTSynchronousTask* task = [[NTSynchronousTask alloc] init];
-			
-			[task run:toolPath directory:currentDirectory withArgs:args input:input];
-			
-			if ([task result] == 0)
-				result = [task output];
-			
-		}
-		@catch (NSException *localException) { }
+		[task run:toolPath directory:currentDirectory withArgs:args input:input];
 		
-		return result;
+		if ([task result] == 0)
+			result = [task output];
+		
+	}
+	@catch (NSException *localException) { }
+	
+	return result;
 	}
 }
 

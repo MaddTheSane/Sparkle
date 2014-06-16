@@ -247,34 +247,34 @@ static NSString * const SUUpdaterDefaultsObservationContext = @"SUUpdaterDefault
 		//	reliable enough and can 'get lost' sometimes, which we don't want.
 		
 		@autoreleasepool {
-			SCNetworkConnectionFlags flags = 0;
-			BOOL isNetworkReachable = YES;
+		SCNetworkConnectionFlags flags = 0;
+		BOOL isNetworkReachable = YES;
+		
+		// Don't perform automatic checks on unconnected laptops or dial-up connections that aren't online:
+		NSMutableDictionary*		theDict = [NSMutableDictionary dictionary];
+		[self performSelectorOnMainThread: @selector(putFeedURLIntoDictionary:) withObject: theDict waitUntilDone: YES];	// Get feed URL on main thread, it's not safe to call elsewhere.
+		
+		const char *hostname = [[theDict[@"feedURL"] host] cStringUsingEncoding: NSUTF8StringEncoding];
+		SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, hostname);
+		Boolean reachabilityResult = NO;
+		// If the feed's using a file:// URL, we won't be able to use reachability.
+		if (reachability != NULL) {
+			SCNetworkReachabilityGetFlags(reachability, &flags);
+			CFRelease(reachability);
+		}
+		
+		if( reachabilityResult )
+		{
+			BOOL reachable =	(flags & kSCNetworkFlagsReachable)				== kSCNetworkFlagsReachable;
+			BOOL automatic =	(flags & kSCNetworkFlagsConnectionAutomatic)	== kSCNetworkFlagsConnectionAutomatic;
+			BOOL local =		(flags & kSCNetworkFlagsIsLocalAddress)			== kSCNetworkFlagsIsLocalAddress;
 			
-			// Don't perform automatic checks on unconnected laptops or dial-up connections that aren't online:
-			NSMutableDictionary*		theDict = [NSMutableDictionary dictionary];
-			[self performSelectorOnMainThread: @selector(putFeedURLIntoDictionary:) withObject: theDict waitUntilDone: YES];	// Get feed URL on main thread, it's not safe to call elsewhere.
+			//NSLog(@"reachable = %s, automatic = %s, local = %s", (reachable?"YES":"NO"), (automatic?"YES":"NO"), (local?"YES":"NO"));
 			
-			const char *hostname = [[theDict[@"feedURL"] host] cStringUsingEncoding: NSUTF8StringEncoding];
-			SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, hostname);
-        Boolean reachabilityResult = NO;
-        // If the feed's using a file:// URL, we won't be able to use reachability.
-        if (reachability != NULL) {
-            SCNetworkReachabilityGetFlags(reachability, &flags);
-            CFRelease(reachability);
-        }
-			
-			if( reachabilityResult )
-			{
-				BOOL reachable =	(flags & kSCNetworkFlagsReachable)				== kSCNetworkFlagsReachable;
-				BOOL automatic =	(flags & kSCNetworkFlagsConnectionAutomatic)	== kSCNetworkFlagsConnectionAutomatic;
-				BOOL local =		(flags & kSCNetworkFlagsIsLocalAddress)			== kSCNetworkFlagsIsLocalAddress;
-				
-				//NSLog(@"reachable = %s, automatic = %s, local = %s", (reachable?"YES":"NO"), (automatic?"YES":"NO"), (local?"YES":"NO"));
-				
-				if( !(reachable || automatic || local) )
-					isNetworkReachable = NO;
-			}
-			
+			if( !(reachable || automatic || local) )
+				isNetworkReachable = NO;
+		}
+		
         // If the network's not reachable, we pass a nil driver into checkForUpdatesWithDriver, which will then reschedule the next update so we try again later.    
         [self performSelectorOnMainThread: @selector(checkForUpdatesWithDriver:) withObject: isNetworkReachable ? inDriver : nil waitUntilDone: NO];
 		
