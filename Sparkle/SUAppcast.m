@@ -28,7 +28,7 @@
 	for (NSXMLNode *attribute in attributeEnum) {
 		dictionary[[attribute name]] = [attribute stringValue];
 	}
-	return dictionary;
+	return [[NSDictionary alloc] initWithDictionary:dictionary];
 }
 @end
 

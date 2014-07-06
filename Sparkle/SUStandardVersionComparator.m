@@ -76,7 +76,7 @@ typedef enum {
 
     // Add the last part onto the array
     [parts addObject:[NSString stringWithString:s]];
-    return parts;
+    return [NSArray arrayWithArray:parts];
 }
 
 - (NSComparisonResult)compareVersion:(NSString *)versionA toVersion:(NSString *)versionB

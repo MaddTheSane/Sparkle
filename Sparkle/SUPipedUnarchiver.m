@@ -18,10 +18,10 @@
 	static NSDictionary *typeSelectorDictionary;
 	if (!typeSelectorDictionary)
 		typeSelectorDictionary = @{@".zip": @"extractZIP",
-                                    @".tar": @"extractTAR",
-								    @".tar.gz": @"extractTGZ",
-                                    @".tgz": @"extractTGZ",
-								    @".tar.bz2": @"extractTBZ",
+                                   @".tar": @"extractTAR",
+                                   @".tar.gz": @"extractTGZ",
+                                   @".tgz": @"extractTGZ",
+                                   @".tar.bz2": @"extractTBZ",
                                    @".tbz": @"extractTBZ"};
 
 	NSString *lastPathComponent = [path lastPathComponent];

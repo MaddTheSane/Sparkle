@@ -57,7 +57,7 @@
 
 - (instancetype) initWithDictionary:(NSDictionary *)dict
 {
-	return [self initWithDictionary:dict failureReason:nil];
+	return [self initWithDictionary:dict failureReason:NULL];
 }
 
 - (instancetype) initWithDictionary:(NSDictionary *)dict failureReason:(NSString*__autoreleasing *)error

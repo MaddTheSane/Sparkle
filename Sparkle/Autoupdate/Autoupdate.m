@@ -19,7 +19,6 @@ static const NSTimeInterval SUInstallationTimeLimit = 5;
 static const NSTimeInterval SUParentQuitCheckInterval = .25;
 
 @interface TerminationListener : NSObject <SUInstallerDelegate>
-
 @property (assign) const char *hostpath;
 @property (assign) const char *executablepath;
 @property (assign) pid_t parentprocessid;
@@ -44,7 +43,6 @@ static const NSTimeInterval SUParentQuitCheckInterval = .25;
 @end
 
 @implementation TerminationListener
-
 @synthesize hostpath;
 @synthesize executablepath;
 @synthesize parentprocessid;
