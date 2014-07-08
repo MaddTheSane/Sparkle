@@ -267,6 +267,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		004A8652192A492B00C9730D /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Sparkle.strings; sourceTree = "<group>"; };
 		0263187214FEBB31005EBF43 /* uk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Sparkle.strings; sourceTree = "<group>"; };
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -291,6 +292,10 @@
 		555CF28D196C49F80000B31E /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SUAutomaticUpdateAlert.strings; sourceTree = "<group>"; };
 		555CF28E196C4A0A0000B31E /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SUUpdateAlert.strings; sourceTree = "<group>"; };
 		555CF28F196C4A1E0000B31E /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SUUpdatePermissionPrompt.strings; sourceTree = "<group>"; };
+		555CF292196C509E0000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Sparkle.strings; sourceTree = "<group>"; };
+		555CF294196C50AB0000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUAutomaticUpdateAlert.strings; sourceTree = "<group>"; };
+		555CF296196C50C30000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUUpdateAlert.strings; sourceTree = "<group>"; };
+		555CF298196C50D70000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUUpdatePermissionPrompt.strings; sourceTree = "<group>"; };
 		55B2A2E8189EEEED00B429F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SUAutomaticUpdateAlert.xib; sourceTree = "<group>"; };
 		55B2A2EA189EEEED00B429F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SUUpdateAlert.xib; sourceTree = "<group>"; };
 		55B2A2EB189EEEED00B429F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SUUpdatePermissionPrompt.xib; sourceTree = "<group>"; };
@@ -1123,6 +1128,7 @@
 				German,
 				Italian,
 				zh_TW,
+				el,
 				en,
 				ca,
 				cs,
@@ -1470,6 +1476,7 @@
 				55B2A2EF189EEF1A00B429F5 /* cs */,
 				55B2A2F0189EEF1E00B429F5 /* da */,
 				55B2A2F1189EEF2200B429F5 /* de */,
+				555CF294196C50AB0000B31E /* el */,
 				55B2A33E189EF79100B429F5 /* en */,
 				55B2A2F2189EEF2500B429F5 /* es */,
 				55B2A2F3189EEF2900B429F5 /* fr */,
@@ -1477,6 +1484,7 @@
 				55B2A2F5189EEF3000B429F5 /* it */,
 				55B2A2F6189EEF3300B429F5 /* ja */,
 				55B2A2F7189EEF3700B429F5 /* ko */,
+				555CF28D196C49F80000B31E /* nb */,
 				55B2A2F8189EEF3B00B429F5 /* nl */,
 				55B2A2F9189EF01500B429F5 /* pl */,
 				55B2A2FA189EF01800B429F5 /* pt-BR */,
@@ -1491,7 +1499,6 @@
 				55B2A303189EF03F00B429F5 /* uk */,
 				55B2A304189EF04300B429F5 /* zh-Hans */,
 				55B2A305189EF04700B429F5 /* zh-Hant */,
-				555CF28D196C49F80000B31E /* nb */,
 			);
 			name = SUAutomaticUpdateAlert.xib;
 			sourceTree = "<group>";
@@ -1504,6 +1511,7 @@
 				55B2A30D189EF2FA00B429F5 /* cs */,
 				55B2A30E189EF2FD00B429F5 /* da */,
 				55B2A30F189EF30100B429F5 /* de */,
+				555CF296196C50C30000B31E /* el */,
 				55B2A344189EF7D900B429F5 /* en */,
 				55B2A310189EF30500B429F5 /* es */,
 				55B2A311189EF30800B429F5 /* fr */,
@@ -1511,6 +1519,7 @@
 				55B2A313189EF30F00B429F5 /* it */,
 				55B2A314189EF31300B429F5 /* ja */,
 				55B2A315189EF31600B429F5 /* ko */,
+				555CF28E196C4A0A0000B31E /* nb */,
 				55B2A316189EF31900B429F5 /* nl */,
 				55B2A317189EF31D00B429F5 /* pl */,
 				55B2A318189EF32100B429F5 /* pt-BR */,
@@ -1525,7 +1534,6 @@
 				55B2A321189EF34000B429F5 /* uk */,
 				55B2A322189EF34400B429F5 /* zh-Hans */,
 				55B2A323189EF34700B429F5 /* zh-Hant */,
-				555CF28E196C4A0A0000B31E /* nb */,
 			);
 			name = SUUpdateAlert.xib;
 			sourceTree = "<group>";
@@ -1538,6 +1546,7 @@
 				55B2A326189EF50500B429F5 /* cs */,
 				55B2A327189EF50800B429F5 /* da */,
 				55B2A328189EF50B00B429F5 /* de */,
+				555CF298196C50D70000B31E /* el */,
 				55B2A346189EF7F200B429F5 /* en */,
 				55B2A329189EF50F00B429F5 /* es */,
 				55B2A32A189EF51200B429F5 /* fr */,
@@ -1545,6 +1554,7 @@
 				55B2A32C189EF51B00B429F5 /* it */,
 				55B2A32D189EF51E00B429F5 /* ja */,
 				55B2A32E189EF52100B429F5 /* ko */,
+				555CF28F196C4A1E0000B31E /* nb */,
 				55B2A32F189EF52400B429F5 /* nl */,
 				55B2A330189EF52800B429F5 /* pl */,
 				55B2A331189EF52B00B429F5 /* pt-BR */,
@@ -1559,7 +1569,6 @@
 				55B2A33A189EF54D00B429F5 /* uk */,
 				55B2A33B189EF55000B429F5 /* zh-Hans */,
 				55B2A33C189EF55400B429F5 /* zh-Hant */,
-				555CF28F196C4A1E0000B31E /* nb */,
 			);
 			name = SUUpdatePermissionPrompt.xib;
 			sourceTree = "<group>";
@@ -1571,6 +1580,7 @@
 				615409C4103BBC4000125AF1 /* cs */,
 				61131A050F846CE600E97AF6 /* da */,
 				619B17200E1E9D0800E72754 /* de */,
+				555CF292196C509E0000B31E /* el */,
 				61AAE8230A321A7F00D8810D /* en */,
 				61AAE84F0A321AF700D8810D /* es */,
 				61AAE8590A321B0400D8810D /* fr */,
@@ -1583,6 +1593,7 @@
 				611A904210240DD300CC659E /* pl */,
 				61E31A80103299500051D188 /* pt_BR */,
 				6186554310D7484E00B1E074 /* pt_PT */,
+				004A8652192A492B00C9730D /* ro */,
 				6195D4920E404AD700D41A50 /* ru */,
 				FE5536F617A2C6AB007CB333 /* sk */,
 				61BA66CC14BDFA0400D02D86 /* sl */,
