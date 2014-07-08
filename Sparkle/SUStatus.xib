@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <development version="5100" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SUStatusController">
@@ -18,23 +19,27 @@
         <window title="Set in Code" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="200" y="222" width="400" height="107"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <rect key="contentRect" x="200" y="222" width="400" height="111"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="213" height="107"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="107"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="111"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView id="7">
-                        <rect key="frame" x="24" y="28" width="64" height="64"/>
+                    <imageView translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                        <rect key="frame" x="20" y="27" width="64" height="64"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="7" secondAttribute="height" multiplier="1:1" id="lzg-2P-vSX"/>
+                            <constraint firstAttribute="width" constant="64" id="vFC-XS-Ftz"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSApplicationIcon" id="53"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="applicationIcon" id="9"/>
                         </connections>
                     </imageView>
-                    <textField verticalHuggingPriority="750" id="8">
-                        <rect key="frame" x="106" y="75" width="277" height="17"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                        <rect key="frame" x="90" y="74" width="292" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Status Text (set by loc. string in code)" id="54">
                             <font key="font" metaFont="systemBold"/>
@@ -45,16 +50,16 @@
                             <binding destination="-2" name="value" keyPath="title" id="26"/>
                         </connections>
                     </textField>
-                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" id="11">
-                        <rect key="frame" x="107" y="47" width="275" height="20"/>
+                    <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                        <rect key="frame" x="92" y="47" width="288" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <binding destination="-2" name="maxValue" keyPath="maxProgressValue" id="13"/>
                             <binding destination="-2" name="value" keyPath="progressValue" previousBinding="13" id="27"/>
                         </connections>
                     </progressIndicator>
-                    <button verticalHuggingPriority="750" id="12">
-                        <rect key="frame" x="272.00000019191589" y="12" width="114" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                        <rect key="frame" x="303.99999974455159" y="13" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                         <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="55">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -64,8 +69,8 @@
                             <binding destination="-2" name="title" keyPath="buttonTitle" id="21"/>
                         </connections>
                     </button>
-                    <textField verticalHuggingPriority="750" id="16">
-                        <rect key="frame" x="106" y="22" width="167" height="17"/>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="16">
+                        <rect key="frame" x="90" y="23" width="149" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Small System Font Text" id="56">
                             <font key="font" metaFont="system"/>
@@ -82,6 +87,22 @@
                         </connections>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="12" secondAttribute="bottom" constant="20" symbolic="YES" id="E0X-RW-Q7j"/>
+                    <constraint firstItem="11" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="8" symbolic="YES" id="GNA-Au-0Zb"/>
+                    <constraint firstItem="16" firstAttribute="leading" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="HYH-Nl-RN9"/>
+                    <constraint firstItem="7" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="N03-A7-jUH"/>
+                    <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="20" symbolic="YES" id="O2z-ls-kDX"/>
+                    <constraint firstItem="12" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="16" secondAttribute="trailing" constant="8" symbolic="YES" id="TWp-ph-5xe"/>
+                    <constraint firstItem="7" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="TYQ-k8-f76"/>
+                    <constraint firstItem="8" firstAttribute="leading" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="cLZ-Sb-LAg"/>
+                    <constraint firstItem="8" firstAttribute="top" secondItem="6" secondAttribute="top" constant="20" symbolic="YES" id="gPn-Lq-UmK"/>
+                    <constraint firstItem="11" firstAttribute="leading" secondItem="7" secondAttribute="trailing" constant="8" symbolic="YES" id="jRd-SX-pwO"/>
+                    <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" constant="20" symbolic="YES" id="mne-jF-Fy5"/>
+                    <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" constant="20" symbolic="YES" id="nhN-u6-XEV"/>
+                    <constraint firstItem="16" firstAttribute="top" secondItem="11" secondAttribute="bottom" constant="8" symbolic="YES" id="yKp-kZ-AxE"/>
+                    <constraint firstItem="16" firstAttribute="baseline" secondItem="12" secondAttribute="baseline" id="yXx-Ge-7WN"/>
+                </constraints>
             </view>
             <connections>
                 <binding destination="-2" name="title" keyPath="windowTitle" id="24"/>
