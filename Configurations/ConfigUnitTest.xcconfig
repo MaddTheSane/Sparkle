@@ -4,3 +4,4 @@ INFOPLIST_FILE = Tests/SparkleTests-Info.plist
 PRODUCT_NAME = Sparkle Unit Tests
 WRAPPER_EXTENSION = xctest
 WARNING_CFLAGS = $(inherited) -Wno-variadic-macros -Wno-gnu-zero-variadic-macro-arguments
+CLANG_ENABLE_MODULES = NO
