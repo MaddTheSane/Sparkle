@@ -7,9 +7,11 @@
 //
 
 import Cocoa
+import Sparkle
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-                            
+    
+    @IBOutlet weak var updater: SUUpdater!
 	@IBOutlet weak var window: NSWindow!
 
 

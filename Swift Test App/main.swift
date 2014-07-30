@@ -7,5 +7,6 @@
 //
 
 import Cocoa
+import Sparkle
 
 NSApplicationMain(C_ARGC, C_ARGV)

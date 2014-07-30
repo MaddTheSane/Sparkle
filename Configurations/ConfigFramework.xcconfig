@@ -10,3 +10,4 @@ INFOPLIST_FILE = Sparkle/Sparkle-Info.plist
 GCC_PREFIX_HEADER = Sparkle/Sparkle.pch
 SKIP_INSTALL = YES
 OTHER_LDFLAGS = -Wl,-U,_NSURLQuarantinePropertiesKey
+DEFINES_MODULE = YES
