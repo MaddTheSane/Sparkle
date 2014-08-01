@@ -17,14 +17,15 @@ class SUSwiftDSAVerifierTest: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        self.testDir = (__FILE__ as NSString).stringByDeletingLastPathComponent
+        self.testDir = __FILE__.stringByDeletingLastPathComponent
         self.testFile = self.testDir.stringByAppendingPathComponent("signed_test_file")
         self.pubKeyFile = self.testDir.stringByAppendingPathComponent("test_pubkey")
     }
     
     override func tearDown() {
-        //self.testFile = nil
-        //self.pubKeyFile = nil
+        self.testDir = nil
+        self.testFile = nil
+        self.pubKeyFile = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }

@@ -29,7 +29,7 @@ class SUSwiftUpdaterTest: XCTestCase, SUUpdaterDelegate {
     func feedURLStringForUpdater(unused: SUUpdater) -> String {
         return ""
     }
-
+    //disabled because Swift doesn't support exceptions of any type
     /*
     func testFeedURL() {
         self.updater.feedURL // this WON'T throw
@@ -44,6 +44,22 @@ class SUSwiftUpdaterTest: XCTestCase, SUUpdaterDelegate {
                 NSLog("%@", exception);
             }
             });
+        self.queue.waitUntilAllOperationsAreFinished()
+    }
+    
+    func testSetTestFeedURL() {
+        self.updater.feedURL = NSURL(string:"") // this WON'T throw
+        
+        self.queue.addOperationWithBlock({
+            XCTAssertTrue(!NSThread.isMainThread())
+            try {
+                self.updater.feedURL = NSURL(string:"")
+                XCTFail("setFeedURL: did not throw an exception when called on a secondary thread")
+            }
+            catch(exception: NSException) {
+                NSLog("%@", exception)
+            }
+            })
         self.queue.waitUntilAllOperationsAreFinished()
     }
     */
