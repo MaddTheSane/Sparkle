@@ -10,6 +10,10 @@
 #define SUAPPCAST_H
 
 #import "SUExport.h"
+#import <Foundation/NSObject.h>
+#import <Foundation/NSURL.h>
+#import <Foundation/NSError.h>
+#import <Foundation/NSURLDownload.h>
 
 @protocol SUAppcastDelegate;
 
