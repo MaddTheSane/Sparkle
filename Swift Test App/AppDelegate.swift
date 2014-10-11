@@ -9,11 +9,17 @@
 import Cocoa
 import Sparkle
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+@NSApplicationMain
+class AppDelegate: NSObject, NSApplicationDelegate, SUUpdaterDelegate {
     
     @IBOutlet weak var updater: SUUpdater!
 	@IBOutlet weak var window: NSWindow!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        updater.delegate = self
+    }
 
 	func applicationDidFinishLaunching(aNotification: NSNotification?) {
 		// Insert code here to initialize your application
@@ -23,6 +29,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// Insert code here to tear down your application
 	}
 
-
+    func updater(updater: SUUpdater!, didAbortWithError error: NSError!) {
+        if updater === self.updater {
+            println(error)
+        } else {
+            println("Unknown updater")
+        }
+    }
 }
 
