@@ -11,20 +11,13 @@
 #define SUCONSTANTS_H
 
 // -----------------------------------------------------------------------------
-//	Preprocessor flags:
+//	Misc:
 // -----------------------------------------------------------------------------
 
-// Sparkle usually doesn't allow downgrades as they're usually accidental, but
-//	if your app has a downgrade function or URL handler, turn this on:
-#define PERMIT_AUTOMATED_DOWNGRADES 0
+extern const NSTimeInterval SUMinimumUpdateCheckInterval;
+extern const NSTimeInterval SUDefaultUpdateCheckInterval;
 
-// If your app file on disk is named "MyApp 1.1b4", Sparkle usually updates it
-//	in place, giving you an app named 1.1b4 that is actually 1.2. Turn the
-//	following on to always reset the name back to "MyApp":
-#define NORMALIZE_INSTALLED_APP_NAME 0
-
-
-#define TRY_TO_APPEND_VERSION_NUMBER 1
+extern NSString *const SUBundleIdentifier;
 
 // -----------------------------------------------------------------------------
 //	Notifications:
@@ -56,6 +49,35 @@ extern NSString *const SUPromptUserOnFirstLaunchKey;
 extern NSString *const SUKeepDownloadOnFailedInstallKey;
 extern NSString *const SUDefaultsDomainKey;
 extern NSString *const SUFixedHTMLDisplaySizeKey __attribute__((deprecated("This key is obsolete and has no effect.")));
+
+extern NSString *const SUAppendVersionNumberKey;
+extern NSString *const SUEnableAutomatedDowngradesKey;
+extern NSString *const SUNormalizeInstalledApplicationNameKey;
+extern NSString *const SURelaunchToolNameKey;
+
+// -----------------------------------------------------------------------------
+//	Appcast keys::
+// -----------------------------------------------------------------------------
+
+extern NSString *const SUAppcastAttributeDeltaFrom;
+extern NSString *const SUAppcastAttributeDSASignature;
+extern NSString *const SUAppcastAttributeShortVersionString;
+extern NSString *const SUAppcastAttributeVersion;
+
+extern NSString *const SUAppcastElementCriticalUpdate;
+extern NSString *const SUAppcastElementDeltas;
+extern NSString *const SUAppcastElementMinimumSystemVersion;
+extern NSString *const SUAppcastElementMaximumSystemVersion;
+extern NSString *const SUAppcastElementReleaseNotesLink;
+extern NSString *const SUAppcastElementTags;
+
+extern NSString *const SURSSAttributeURL;
+
+extern NSString *const SURSSElementDescription;
+extern NSString *const SURSSElementEnclosure;
+extern NSString *const SURSSElementLink;
+extern NSString *const SURSSElementPubDate;
+extern NSString *const SURSSElementTitle;
 
 // -----------------------------------------------------------------------------
 //	Errors:

@@ -135,7 +135,7 @@ static const NSTimeInterval SUAutomaticUpdatePromptImpatienceTimer = 60 * 60 * 2
 - (void)applicationDidBecomeActive:(NSNotification *)__unused aNotification
 {
     [[self.alert window] makeKeyAndOrderFront:self];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"NSApplicationDidBecomeActiveNotification" object:NSApp];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidBecomeActiveNotification object:NSApp];
 }
 
 - (void)automaticUpdateAlert:(SUAutomaticUpdateAlert *)__unused aua finishedWithChoice:(SUAutomaticInstallationChoice)choice
@@ -180,10 +180,18 @@ static const NSTimeInterval SUAutomaticUpdatePromptImpatienceTimer = 60 * 60 * 2
 
 - (void)abortUpdateWithError:(NSError *)error
 {
-    if (self.showErrors)
+    if (self.showErrors) {
         [super abortUpdateWithError:error];
-    else
+    } else {
+        // Call delegate separately here because otherwise it won't know we stopped.
+        // Normally this gets called by the superclass
+        id<SUUpdaterDelegate> updaterDelegate = [self.updater delegate];
+        if ([updaterDelegate respondsToSelector:@selector(updater:didAbortWithError:)]) {
+            [updaterDelegate updater:self.updater didAbortWithError:error];
+        }
+
         [self abortUpdate];
+    }
 }
 
 @end

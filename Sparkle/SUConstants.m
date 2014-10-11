@@ -13,6 +13,16 @@
 #import "SUVersionComparisonProtocol.h"
 #import "SUConstants.h"
 
+#ifndef DEBUG
+#define DEBUG 0
+#endif
+
+// Define some minimum intervals to avoid DoS-like checking attacks
+const NSTimeInterval SUMinimumUpdateCheckInterval = DEBUG ? 60 : (60 * 60);
+const NSTimeInterval SUDefaultUpdateCheckInterval = DEBUG ? 60 : (60 * 60 * 24);
+
+NSString *const SUBundleIdentifier = @SPARKLE_BUNDLE_IDENTIFIER;
+
 NSString *const SUTechnicalErrorInformationKey = @"SUTechnicalErrorInformation";
 
 NSString *const SUHasLaunchedBeforeKey = @"SUHasLaunchedBefore";
@@ -35,5 +45,29 @@ NSString *const SUPromptUserOnFirstLaunchKey = @"SUPromptUserOnFirstLaunch";
 NSString *const SUFixedHTMLDisplaySizeKey = @"SUFixedHTMLDisplaySize";
 NSString *const SUKeepDownloadOnFailedInstallKey = @"SUKeepDownloadOnFailedInstall";
 NSString *const SUDefaultsDomainKey = @"SUDefaultsDomain";
-
 NSString *const SUSparkleErrorDomain = @"SUSparkleErrorDomain";
+
+NSString *const SUAppendVersionNumberKey = @"SUAppendVersionNumber";
+NSString *const SUEnableAutomatedDowngradesKey = @"SUEnableAutomatedDowngrades";
+NSString *const SUNormalizeInstalledApplicationNameKey = @"SUNormalizeInstalledApplicationName";
+NSString *const SURelaunchToolNameKey = @"SURelaunchToolName";
+
+NSString *const SUAppcastAttributeDeltaFrom = @"sparkle:deltaFrom";
+NSString *const SUAppcastAttributeDSASignature = @"sparkle:dsaSignature";
+NSString *const SUAppcastAttributeShortVersionString = @"sparkle:shortVersionString";
+NSString *const SUAppcastAttributeVersion = @"sparkle:version";
+
+NSString *const SUAppcastElementCriticalUpdate = @"sparkle:criticalUpdate";
+NSString *const SUAppcastElementDeltas = @"sparkle:deltas";
+NSString *const SUAppcastElementMinimumSystemVersion = @"sparkle:minimumSystemVersion";
+NSString *const SUAppcastElementMaximumSystemVersion = @"sparkle:maximumSystemVersion";
+NSString *const SUAppcastElementReleaseNotesLink = @"sparkle:releaseNotesLink";
+NSString *const SUAppcastElementTags = @"sparkle:tags";
+
+NSString *const SURSSAttributeURL = @"url";
+
+NSString *const SURSSElementDescription = @"description";
+NSString *const SURSSElementEnclosure = @"enclosure";
+NSString *const SURSSElementLink = @"link";
+NSString *const SURSSElementPubDate = @"pubDate";
+NSString *const SURSSElementTitle = @"title";
