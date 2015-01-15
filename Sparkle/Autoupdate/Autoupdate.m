@@ -32,6 +32,7 @@ static const NSTimeInterval SUParentQuitCheckInterval = .25;
 @property (strong) SUHost *host;
 @property (assign) BOOL shouldRelaunch;
 @property (assign) BOOL shouldShowUI;
+@property (strong) SUStatusController *statusController;
 
 - (void)parentHasQuit;
 
@@ -57,6 +58,7 @@ static const NSTimeInterval SUParentQuitCheckInterval = .25;
 @synthesize host;
 @synthesize shouldRelaunch;
 @synthesize shouldShowUI;
+@synthesize statusController;
 
 - (instancetype)initWithHostPath:(NSString *)inhostpath executablePath:(NSString *)execpath parentProcessId:(pid_t)ppid folderPath:(NSString *)infolderpath shouldRelaunch:(BOOL)relaunch shouldShowUI:(BOOL)showUI selfPath:(NSString *)inSelfPath
 {
@@ -86,6 +88,7 @@ static const NSTimeInterval SUParentQuitCheckInterval = .25;
 - (void)dealloc
 {
     [self.longInstallationTimer invalidate];
+    [self.statusController close];
 }
 
 
@@ -152,7 +155,10 @@ static const NSTimeInterval SUParentQuitCheckInterval = .25;
         [statusCtl beginActionWithTitle:SULocalizedString(@"Installing update...", @"")
                         maxProgressValue: 0 statusText: @""];
         [statusCtl showWindow:self];
-    }
+
+        [self.statusController close]; // If there's an existing status controller, close it before we release our strong reference to it.
+        self.statusController = statusCtl; // Keep a strong reference to the status controller, or else it might get prematurely deallocated.
+}
 
     [SUInstaller installFromUpdateFolder:self.folderpath
                                 overHost:self.host
