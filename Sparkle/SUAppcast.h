@@ -9,6 +9,7 @@
 #ifndef SUAPPCAST_H
 #define SUAPPCAST_H
 
+#import <Foundation/NSURLDownload.h>
 #import "SUExport.h"
 #import <Foundation/NSObject.h>
 #import <Foundation/NSURL.h>
@@ -22,6 +23,7 @@ SU_EXPORT @interface SUAppcast : NSObject <NSURLDownloadDelegate>
 
 @property (weak) id<SUAppcastDelegate> delegate;
 @property (copy) NSString *userAgentString;
+@property (copy) NSDictionary *httpHeaders;
 
 - (void)fetchAppcastFromURL:(NSURL *)url;
 
