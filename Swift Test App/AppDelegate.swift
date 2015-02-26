@@ -21,11 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, SUUpdaterDelegate {
         updater.delegate = self
     }
 
-	func applicationDidFinishLaunching(aNotification: NSNotification?) {
+	func applicationDidFinishLaunching(aNotification: NSNotification) {
 		// Insert code here to initialize your application
 	}
 
-	func applicationWillTerminate(aNotification: NSNotification?) {
+	func applicationWillTerminate(aNotification: NSNotification) {
 		// Insert code here to tear down your application
 	}
 
