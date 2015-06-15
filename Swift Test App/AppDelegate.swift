@@ -31,9 +31,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, SUUpdaterDelegate {
 
     func updater(updater: SUUpdater!, didAbortWithError error: NSError!) {
         if updater === self.updater {
-            println(error)
+            print(error)
         } else {
-            println("Unknown updater")
+            print("Unknown updater")
         }
     }
 }
