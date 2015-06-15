@@ -15,7 +15,7 @@ SPARKLE_AUTOMATED_DOWNGRADES = 0
 SPARKLE_NORMALIZE_INSTALLED_APPLICATION_NAME = 0
 
 SPARKLE_VERSION_MAJOR = 1
-SPARKLE_VERSION_MINOR = 9
+SPARKLE_VERSION_MINOR = 10
 SPARKLE_VERSION_PATCH = 0
 SPARKLE_VERSION = $(SPARKLE_VERSION_MAJOR).$(SPARKLE_VERSION_MINOR).$(SPARKLE_VERSION_PATCH)
 
@@ -27,6 +27,8 @@ GCC_SYMBOLS_PRIVATE_EXTERN = YES
 GCC_INLINES_ARE_PRIVATE_EXTERN = YES
 ARCHS = $(ARCHS_STANDARD)
 MACOSX_DEPLOYMENT_TARGET = 10.7
+PRODUCT_NAME = ${TARGET_NAME}
+PRODUCT_BUNDLE_IDENTIFIER = org.sparkle-project.Sparkle.${PRODUCT_NAME:rfc1034identifier}
 
 GCC_PREPROCESSOR_DEFINITIONS = SPARKLE_BUNDLE_IDENTIFIER=\"$(SPARKLE_BUNDLE_IDENTIFIER)\" SPARKLE_RELAUNCH_TOOL_NAME=\"$(SPARKLE_RELAUNCH_TOOL_NAME)\"
 CLANG_ENABLE_OBJC_ARC = YES
@@ -75,4 +77,4 @@ GCC_WARN_UNUSED_VARIABLE = YES
 WARNING_CFLAGS_EXTRA = -Wno-custom-atomic-properties -Wno-implicit-atomic-properties
 
 // Turn on all warnings, then disable a few which are almost impossible to avoid
-WARNING_CFLAGS = -Wall -Weverything -Wno-empty-translation-unit -Wno-unused-macros -Wno-gnu-statement-expression -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-auto-import $(WARNING_CFLAGS_EXTRA)
+WARNING_CFLAGS = -Wall -Weverything -Wno-empty-translation-unit -Wno-unused-macros -Wno-gnu-statement-expression -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wno-auto-import -Wno-cstring-format-directive $(WARNING_CFLAGS_EXTRA)

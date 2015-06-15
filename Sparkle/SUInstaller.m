@@ -14,7 +14,6 @@
 #import "SUConstants.h"
 #import "SULog.h"
 
-
 @implementation SUInstaller
 
 static NSString *sUpdateFolder = nil;
@@ -43,50 +42,49 @@ static NSString *sUpdateFolder = nil;
         return NO;
 }
 
-+ (NSString *)installSourcePathInUpdateFolder:(NSString *)inUpdateFolder forHost:(SUHost *)host isPackage:(BOOL *)isPackagePtr
++ (NSString *)installSourcePathInUpdateFolder:(NSString *)inUpdateFolder forHost:(SUHost *)host isPackage:(BOOL *)isPackagePtr isGuided:(BOOL *)isGuidedPtr
 {
+    NSParameterAssert(inUpdateFolder);
+    NSParameterAssert(host);
+
     // Search subdirectories for the application
     NSString *currentFile,
         *newAppDownloadPath = nil,
         *bundleFileName = [[host bundlePath] lastPathComponent],
         *alternateBundleFileName = [[host name] stringByAppendingPathExtension:[[host bundlePath] pathExtension]];
     BOOL isPackage = NO;
+    BOOL isGuided = NO;
     NSString *fallbackPackagePath = nil;
     NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:inUpdateFolder];
+    NSString *bundleFileNameNoExtension = [bundleFileName stringByDeletingPathExtension];
 
     sUpdateFolder = inUpdateFolder;
 
-	while ((currentFile = [dirEnum nextObject]))
-	{
+    while ((currentFile = [dirEnum nextObject])) {
         NSString *currentPath = [inUpdateFolder stringByAppendingPathComponent:currentFile];
-        if ([[currentFile lastPathComponent] isEqualToString:bundleFileName] ||
-            [[currentFile lastPathComponent] isEqualToString:alternateBundleFileName]) // We found one!
+        NSString *currentFilename = [currentFile lastPathComponent];
+        NSString *currentExtension = [currentFile pathExtension];
+        NSString *currentFilenameNoExtension = [currentFilename stringByDeletingPathExtension];
+        if ([currentFilename isEqualToString:bundleFileName] ||
+            [currentFilename isEqualToString:alternateBundleFileName]) // We found one!
         {
             isPackage = NO;
             newAppDownloadPath = currentPath;
             break;
-		}
-		else if ([[currentFile pathExtension] isEqualToString:@"pkg"] ||
-				 [[currentFile pathExtension] isEqualToString:@"mpkg"])
-		{
-			if ([[[currentFile lastPathComponent] stringByDeletingPathExtension] isEqualToString:[bundleFileName stringByDeletingPathExtension]])
-			{
+        } else if ([currentExtension isEqualToString:@"pkg"] ||
+                   [currentExtension isEqualToString:@"mpkg"]) {
+            if ([currentFilenameNoExtension isEqualToString:bundleFileNameNoExtension]) {
                 isPackage = YES;
                 newAppDownloadPath = currentPath;
                 break;
-			}
-			else
-			{
+            } else {
                 // Remember any other non-matching packages we have seen should we need to use one of them as a fallback.
                 fallbackPackagePath = currentPath;
             }
-		}
-		else
-		{
+        } else {
             // Try matching on bundle identifiers in case the user has changed the name of the host app
             NSBundle *incomingBundle = [NSBundle bundleWithPath:currentPath];
-			if(incomingBundle && [[incomingBundle bundleIdentifier] isEqualToString:[[host bundle] bundleIdentifier]])
-			{
+            if (incomingBundle && [[incomingBundle bundleIdentifier] isEqualToString:[[host bundle] bundleIdentifier]]) {
                 isPackage = NO;
                 newAppDownloadPath = currentPath;
                 break;
@@ -100,45 +98,46 @@ static NSString *sUpdateFolder = nil;
 
     // We don't have a valid path. Try to use the fallback package.
 
-	if (newAppDownloadPath == nil && fallbackPackagePath != nil)
-	{
+    if (newAppDownloadPath == nil && fallbackPackagePath != nil) {
         isPackage = YES;
         newAppDownloadPath = fallbackPackagePath;
     }
 
-    if (isPackagePtr) *isPackagePtr = isPackage;
+    if (isPackage) {
+        // foo.app -> foo.sparkle_guided.pkg or foo.sparkle_guided.mpkg
+        if ([[[newAppDownloadPath stringByDeletingPathExtension] pathExtension] isEqualToString:@"sparkle_guided"]) {
+            isGuided = YES;
+        }
+    }
+
+    if (isPackagePtr)
+        *isPackagePtr = isPackage;
+    if (isGuidedPtr)
+        *isGuidedPtr = isGuided;
+
+    if (!newAppDownloadPath) {
+        SULog(@"Searched %@ for %@.(app|pkg)", inUpdateFolder, bundleFileNameNoExtension);
+    }
     return newAppDownloadPath;
 }
 
-+ (NSString *)appPathInUpdateFolder:(NSString *)updateFolder forHost:(SUHost *)host
++ (void)installFromUpdateFolder:(NSString *)inUpdateFolder overHost:(SUHost *)host installationPath:(NSString *)installationPath versionComparator:(id<SUVersionComparison>)comparator completionHandler:(void (^)(NSError *))completionHandler
 {
     BOOL isPackage = NO;
-    NSString *path = [self installSourcePathInUpdateFolder:updateFolder forHost:host isPackage:&isPackage];
-    return isPackage ? nil : path;
-}
+    BOOL isGuided = NO;
+    NSString *newAppDownloadPath = [self installSourcePathInUpdateFolder:inUpdateFolder forHost:host isPackage:&isPackage isGuided:&isGuided];
 
-+ (void)installFromUpdateFolder:(NSString *)inUpdateFolder overHost:(SUHost *)host installationPath:(NSString *)installationPath delegate:(id<SUInstallerDelegate>)delegate versionComparator:(id<SUVersionComparison>)comparator
-{
-	// Look for installer guide
-	NSString* installerGuide = [SUGuidedPackageInstaller installerGuideWithinUpdateFolder:inUpdateFolder];
-	if (installerGuide)
-	{
-		[SUGuidedPackageInstaller performInstallationToPath:installationPath fromPath:installerGuide host:host delegate:delegate synchronously:NO versionComparator:comparator];
-	}
-	else
-	{
-		BOOL isPackage = NO;
-		NSString *newAppDownloadPath = [self installSourcePathInUpdateFolder:inUpdateFolder forHost:host isPackage:&isPackage];
-
-		if (newAppDownloadPath == nil)
-		{
-			[self finishInstallationToPath:installationPath withResult:NO host:host error:[NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingUpdateError userInfo:@{ NSLocalizedDescriptionKey: @"Couldn't find an appropriate update in the downloaded package." }] delegate:delegate];
-		}
-		else
-		{
-			[(isPackage ? [SUPackageInstaller class] : [SUPlainInstaller class])performInstallationToPath:installationPath fromPath:newAppDownloadPath host:host delegate:delegate versionComparator:comparator];
-		}
-	}
+    if (newAppDownloadPath == nil) {
+        [self finishInstallationToPath:installationPath withResult:NO error:[NSError errorWithDomain:SUSparkleErrorDomain code:SUMissingUpdateError userInfo:@{ NSLocalizedDescriptionKey: @"Couldn't find an appropriate update in the downloaded package." }] completionHandler:completionHandler];
+    } else {
+        if (isPackage && isGuided) {
+            [SUGuidedPackageInstaller performInstallationToPath:installationPath fromPath:newAppDownloadPath host:host versionComparator:comparator completionHandler:completionHandler];
+        } else if (isPackage) {
+            [SUPackageInstaller performInstallationToPath:installationPath fromPath:newAppDownloadPath host:host versionComparator:comparator completionHandler:completionHandler];
+        } else {
+            [SUPlainInstaller performInstallationToPath:installationPath fromPath:newAppDownloadPath host:host versionComparator:comparator completionHandler:completionHandler];
+        }
+    }
 }
 
 + (void)mdimportInstallationPath:(NSString *)installationPath
@@ -150,8 +149,7 @@ static NSString *sUpdateFolder = nil;
     NSTask *mdimport = [[NSTask alloc] init];
     [mdimport setLaunchPath:@"/usr/bin/mdimport"];
     [mdimport setArguments:@[installationPath]];
-	@try
-	{
+    @try {
         [mdimport launch];
         [mdimport waitUntilExit];
     }
@@ -162,24 +160,20 @@ static NSString *sUpdateFolder = nil;
     }
 }
 
-+ (void)finishInstallationToPath:(NSString *)installationPath withResult:(BOOL)result host:(SUHost *)host error:(NSError *)error delegate:(id<SUInstallerDelegate>)delegate
++ (void)finishInstallationToPath:(NSString *)installationPath withResult:(BOOL)result error:(NSError *)error completionHandler:(void (^)(NSError *))completionHandler
 {
-	if (result)
-	{
+    if (result) {
         [self mdimportInstallationPath:installationPath];
-        if ([delegate respondsToSelector:@selector(installerFinishedForHost:)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-				[delegate installerFinishedForHost:host];
-            });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(nil);
+        });
+    } else {
+        if (!error) {
+            error = [NSError errorWithDomain:SUSparkleErrorDomain code:SUInstallationError userInfo:nil];
         }
-	}
-	else
-	{
-        if ([delegate respondsToSelector:@selector(installerForHost:failedWithError:)]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-				[delegate installerForHost:host failedWithError:error];
-            });
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(error);
+        });
     }
 }
 
