@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Procurar automaticamente"; ObjectID = "176"; */
+"176.title" = "Procurar automaticamente";
+
+/* Class = "NSButtonCell"; title = "Não procurar"; ObjectID = "177"; */
+"177.title" = "Não procurar";
+
+/* Class = "NSTextFieldCell"; title = "Procurar actualizações automaticamente?"; ObjectID = "178"; */
+"178.title" = "Procurar actualizações automaticamente?";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Incluir perfil de sistema anónimo"; ObjectID = "180"; */
+"180.title" = "Incluir perfil de sistema anónimo";
+
+/* Class = "NSTextFieldCell"; title = "A informação anónima do perfil de sistema é usada para no futuro nos ajudar a planear o trabalho de desenvolvimento. Por favor contacte-nos se tiver alguma questão acerca deste assunto.\n\nEsta é a informação que seria enviada:"; ObjectID = "183"; */
+"183.title" = "A informação anónima do perfil de sistema é usada para no futuro nos ajudar a planear o trabalho de desenvolvimento. Por favor contacte-nos se tiver alguma questão acerca deste assunto.\n\nEsta é a informação que seria enviada:";

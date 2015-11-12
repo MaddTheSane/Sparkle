@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Installer og start på ny"; ObjectID = "41"; */
+"41.title" = "Installer og start på ny";
+
+/* Class = "NSButtonCell"; title = "Installer og avslutt"; ObjectID = "42"; */
+"42.title" = "Installer og avslutt";
+
+/* Class = "NSButtonCell"; title = "Last ned og installer automatisk i fremtiden"; ObjectID = "43"; */
+"43.title" = "Last ned og installer automatisk i fremtiden";
+
+/* Class = "NSButtonCell"; title = "Ikke installer"; ObjectID = "44"; */
+"44.title" = "Ikke installer";

@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Textcell"; ObjectID = "43"; */
+"43.title" = "Textcell";
+
+/* Class = "NSTextFieldCell"; title = "Textcell"; ObjectID = "45"; */
+"45.title" = "Textcell";
+
+/* Class = "NSButtonCell"; title = "Kontrollera automatiskt"; ObjectID = "176"; */
+"176.title" = "Kontrollera automatiskt";
+
+/* Class = "NSButtonCell"; title = "Kontrollera inte"; ObjectID = "177"; */
+"177.title" = "Kontrollera inte";
+
+/* Class = "NSTextFieldCell"; title = "Leta efter uppdateringar automatiskt?\n"; ObjectID = "178"; */
+"178.title" = "Leta efter uppdateringar automatiskt?\n";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Inkludera anonym systemprofil"; ObjectID = "180"; */
+"180.title" = "Inkludera anonym systemprofil";
+
+/* Class = "NSTextFieldCell"; title = "Anonym systemprofilinformation används för att hjälpa oss att planera framtida utvecklingsarbete. Vänligen kontakta oss ifall du har några frågot om detta.\n\nDetta är informationen som skulle sändas:"; ObjectID = "183"; */
+"183.title" = "Anonym systemprofilinformation används för att hjälpa oss att planera framtida utvecklingsarbete. Vänligen kontakta oss ifall du har några frågot om detta.\n\nDetta är informationen som skulle sändas:";

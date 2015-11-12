@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Innsetja og endurræsa"; ObjectID = "41"; */
+"41.title" = "Innsetja og endurræsa";
+
+/* Class = "NSButtonCell"; title = "Innsetja eftir notkun"; ObjectID = "42"; */
+"42.title" = "Innsetja eftir notkun";
+
+/* Class = "NSButtonCell"; title = "Sækja og innsetja uppfærslur sjálfkrafa framvegis"; ObjectID = "43"; */
+"43.title" = "Sækja og innsetja uppfærslur sjálfkrafa framvegis";
+
+/* Class = "NSButtonCell"; title = "Ekki innsetja"; ObjectID = "44"; */
+"44.title" = "Ekki innsetja";

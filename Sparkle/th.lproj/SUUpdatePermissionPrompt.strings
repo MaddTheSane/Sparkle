@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "ตรวจสอบโดยอัตโนมัติ"; ObjectID = "176"; */
+"176.title" = "ตรวจสอบโดยอัตโนมัติ";
+
+/* Class = "NSButtonCell"; title = "ไม่ต้องตรวจสอบ"; ObjectID = "177"; */
+"177.title" = "ไม่ต้องตรวจสอบ";
+
+/* Class = "NSTextFieldCell"; title = "ตรวจสอบอัพเดทอัตโนมัติ?"; ObjectID = "178"; */
+"178.title" = "ตรวจสอบอัพเดทอัตโนมัติ?";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "ส่งข้อมูลระบบแบบนิรนาม"; ObjectID = "180"; */
+"180.title" = "ส่งข้อมูลระบบแบบนิรนาม";
+
+/* Class = "NSTextFieldCell"; title = "ข้อมูลระบบแบบนิรนามช่วยในการวางแผนพัฒนาแอปพลิเคชันของเราในอนาคต กรุณาติดต่อเราถ้าคุณมีข้อสงสัยในเรื่องนี้\n\nนี่คือข้อมูลที่จะถูกส่งไป:"; ObjectID = "183"; */
+"183.title" = "ข้อมูลระบบแบบนิรนามช่วยในการวางแผนพัฒนาแอปพลิเคชันของเราในอนาคต กรุณาติดต่อเราถ้าคุณมีข้อสงสัยในเรื่องนี้\n\nนี่คือข้อมูลที่จะถูกส่งไป:";

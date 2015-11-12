@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Έλεγχος Αυτόματα"; ObjectID = "176"; */
+"176.title" = "Έλεγχος Αυτόματα";
+
+/* Class = "NSButtonCell"; title = "Μή έλεγχος"; ObjectID = "177"; */
+"177.title" = "Μή έλεγχος";
+
+/* Class = "NSTextFieldCell"; title = "Αυτόματος έλεγχος για ενημερώσεις;"; ObjectID = "178"; */
+"178.title" = "Αυτόματος έλεγχος για ενημερώσεις;";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Αποστολή ανώνυμου προφίλ συστήματος"; ObjectID = "180"; */
+"180.title" = "Αποστολή ανώνυμου προφίλ συστήματος";
+
+/* Class = "NSTextFieldCell"; title = "Το ανώνυμο προφίλ συστήματος χρησιμοποιείται για να μας βοηθήσει σε μελλοντική ανάπτυξη του προγράμματος. Παρακαλώ επικοινωνήστε μαζί μας άν έχετε ερωτήσεις.\n\nΑυτές είναι οι πληροφορίες που θα σταλούν:"; ObjectID = "183"; */
+"183.title" = "Το ανώνυμο προφίλ συστήματος χρησιμοποιείται για να μας βοηθήσει σε μελλοντική ανάπτυξη του προγράμματος. Παρακαλώ επικοινωνήστε μαζί μας άν έχετε ερωτήσεις.\n\nΑυτές είναι οι πληροφορίες που θα σταλούν:";

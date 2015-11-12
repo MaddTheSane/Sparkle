@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Inštalovať a reštartovať"; ObjectID = "41"; */
+"41.title" = "Inštalovať a reštartovať";
+
+/* Class = "NSButtonCell"; title = "Inštalovať a ukončiť"; ObjectID = "42"; */
+"42.title" = "Inštalovať a ukončiť";
+
+/* Class = "NSButtonCell"; title = "V budúcnosti aktualizácie preberať a inštalovať automaticky"; ObjectID = "43"; */
+"43.title" = "V budúcnosti aktualizácie preberať a inštalovať automaticky";
+
+/* Class = "NSButtonCell"; title = "Neinštalovať"; ObjectID = "44"; */
+"44.title" = "Neinštalovať";

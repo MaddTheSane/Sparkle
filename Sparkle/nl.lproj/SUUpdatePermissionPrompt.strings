@@ -1,0 +1,24 @@
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "43"; */
+"43.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "45"; */
+"45.title" = "Text Cell";
+
+/* Class = "NSButtonCell"; title = "Controleer automatisch"; ObjectID = "176"; */
+"176.title" = "Controleer automatisch";
+
+/* Class = "NSButtonCell"; title = "Controleer niet"; ObjectID = "177"; */
+"177.title" = "Controleer niet";
+
+/* Class = "NSTextFieldCell"; title = "Automatisch controleren op updates?"; ObjectID = "178"; */
+"178.title" = "Automatisch controleren op updates?";
+
+/* Class = "NSTextFieldCell"; title = "DO NOT LOCALIZE"; ObjectID = "179"; */
+"179.title" = "DO NOT LOCALIZE";
+
+/* Class = "NSButtonCell"; title = "Inclusief anoniem systeemprofiel"; ObjectID = "180"; */
+"180.title" = "Inclusief anoniem systeemprofiel";
+
+/* Class = "NSTextFieldCell"; title = "Aan de hand van anonieme informatie over het systeemprofiel kunnen wij toekomstige ontwikkelingswerkzaamheden beter plannen. Neem contact met ons op als u hierover vragen hebt.\n\nDit is de informatie die wordt verzonden:"; ObjectID = "183"; */
+"183.title" = "Aan de hand van anonieme informatie over het systeemprofiel kunnen wij toekomstige ontwikkelingswerkzaamheden beter plannen. Neem contact met ons op als u hierover vragen hebt.\n\nDit is de informatie die wordt verzonden:";
