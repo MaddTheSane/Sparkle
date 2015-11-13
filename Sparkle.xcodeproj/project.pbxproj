@@ -379,6 +379,9 @@
 		555CF29B196C523E0000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUAutomaticUpdateAlert.strings; sourceTree = "<group>"; };
 		555CF29C196C52460000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUUpdateAlert.strings; sourceTree = "<group>"; };
 		555CF29D196C524C0000B31E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SUUpdatePermissionPrompt.strings; sourceTree = "<group>"; };
+		55B392CF1BF55FC000E1C48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SUAutomaticUpdateAlert.strings; sourceTree = "<group>"; };
+		55B392D11BF55FCD00E1C48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SUUpdateAlert.strings; sourceTree = "<group>"; };
+		55B392D31BF55FD600E1C48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SUUpdatePermissionPrompt.strings; sourceTree = "<group>"; };
 		55C14BB7136EEF1500649790 /* Autoupdate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autoupdate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55C14BB9136EEF1500649790 /* Autoupdate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Autoupdate-Info.plist"; sourceTree = "<group>"; };
 		55C14BD3136EEFCE00649790 /* Autoupdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Autoupdate.m; sourceTree = "<group>"; };
@@ -1653,12 +1656,13 @@
 		55C14BDA136EF20D00649790 /* SUAutomaticUpdateAlert.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
+				55C14BDE136EF20D00649790 /* Base */,
 				6149E6ED1601ABAC008A351E /* ar */,
 				55C14BDB136EF20D00649790 /* cs */,
 				55C14BDC136EF20D00649790 /* da */,
 				55C14BDD136EF20D00649790 /* de */,
 				555CF29B196C523E0000B31E /* el */,
-				55C14BDE136EF20D00649790 /* Base */,
+				55B392CF1BF55FC000E1C48F /* en */,
 				55C14BDF136EF20D00649790 /* es */,
 				55C14BE0136EF20D00649790 /* fr */,
 				55C14BE1136EF20D00649790 /* is */,
@@ -1687,12 +1691,13 @@
 		55C14BF0136EF26100649790 /* SUUpdateAlert.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
+				55C14BF4136EF26100649790 /* Base */,
 				6149E6EF1601ABAC008A351E /* ar */,
 				55C14BF1136EF26100649790 /* cs */,
 				55C14BF2136EF26100649790 /* da */,
 				55C14BF3136EF26100649790 /* de */,
 				555CF29C196C52460000B31E /* el */,
-				55C14BF4136EF26100649790 /* Base */,
+				55B392D11BF55FCD00E1C48F /* en */,
 				55C14BF5136EF26100649790 /* es */,
 				55C14BF6136EF26100649790 /* fr */,
 				55C14BF7136EF26100649790 /* is */,
@@ -1721,12 +1726,13 @@
 		55C14C05136EF2C700649790 /* SUUpdatePermissionPrompt.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
+				55C14C09136EF2C700649790 /* Base */,
 				6149E6F01601ABAC008A351E /* ar */,
 				55C14C06136EF2C700649790 /* cs */,
 				55C14C07136EF2C700649790 /* da */,
 				55C14C08136EF2C700649790 /* de */,
 				555CF29D196C524C0000B31E /* el */,
-				55C14C09136EF2C700649790 /* Base */,
+				55B392D31BF55FD600E1C48F /* en */,
 				55C14C0A136EF2C700649790 /* es */,
 				55C14C0B136EF2C700649790 /* fr */,
 				55C14C0C136EF2C700649790 /* is */,
